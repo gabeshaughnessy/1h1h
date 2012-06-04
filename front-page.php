@@ -13,5 +13,5 @@
  */
 
 get_header(); 
-main_loop();
+//hh_post_type_loop('hh_service', 10);
  get_footer(); ?>
