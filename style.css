@@ -10,3 +10,392 @@ License: GPL 3.0
 License URI: http://www.gnu.org/copyleft/gpl.html
 
 */
+
+/* reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* end of the reset */
+
+/* Fonts */
+	.muli{
+		font-family: 'Muli', arial, sans-serif;
+	}
+	.fredericka {
+		font-family: 'Fredericka the Great', Georgia, serif;
+		font-size: 1.4em;
+	}
+	.parisienne {
+		font-family: 'Parisienne', cursive, sans-serif;
+	}
+@font-face {
+	font-family: 'ArialBlack';
+	src: url('fonts/arial_black/1h1h_black-webfont.eot#iefix') format('embedded-opentype'), 
+	     url('fonts/arial_black/1h1h_black-webfont.woff') format('woff'), 
+	     url('fonts/arial_black/1h1h_black-webfont.ttf')  format('truetype'),
+	     url('fonts/arial_black/1h1h_black-webfont.svg#svgFontName') format('svg');
+	}	
+body{
+ color:  #333;
+ font-family: 'Muli', arial, sans-serif;
+}
+#wrapper {
+	overflow:  hidden;
+}
+.menu-main-menu-container {
+	position: fixed;
+	top: 0px;
+	z-index:  1000;
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	overflow: hidden;
+	background-image: url(images/menu_bg.png);
+	background-repeat: repeat-x;
+	background-position: -300px top;
+	height:  60px;
+	-webkit-transition: background-position .5s ease-in-out;
+	-moz-transition: background-position .5s ease-in-out;
+	-o-transition: background-position .5s ease-in-out;
+	transition: background-position .5s ease-in-out;
+}
+#menu-main-menu {
+	width: 960px;
+
+	margin: 0 auto;
+	text-align: center;
+}
+#menu-main-menu .menu-item {
+	list-style: none;
+	float: left;
+	margin: 5px 40px 0 0;
+	padding: 5px;
+	
+}
+#menu-main-menu .menu-item.active {
+	font-size: 1.5em;
+}
+#menu-main-menu .menu-item a{
+		font-family: 'Muli', arial, sans-serif;
+		text-transform: uppercase;
+		text-decoration: none;
+		color:  #333;
+		text-shadow: 0 1px 1px rgba(255,255,255,.7);
+		font-weight: bold;
+}
+#menu-main-menu .menu-item a:hover{
+	
+}
+#main-hat, #main-hat-contact {
+	width: 195px;
+	height: 150px;
+	display: block;
+	background-image: url(images/big_hat.png);
+	background-repeat: no-repeat;
+	margin: 10px auto;
+	background-position: top center;
+}
+#main-hat span, #main-hat-contact span{
+	padding-top: 113px;
+	display: block;
+}
+#main-logo{
+	width:  498px;
+	height:  171px;
+	text-indent: -9999%;
+	display: block;
+	margin: 10px auto;
+	background-image: url(images/big_logo.png);
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+#scroll-cta {
+	font-size: 1.4em;
+	width:  500px;
+	text-align: center;
+	margin:  10px auto;
+}
+#call-cta {
+	font-size: 1.3em;
+	width:  500px;
+	text-align: center;
+	margin:  10px auto;
+	text-transform: uppercase;
+}
+
+#address-cta {
+	text-transform: uppercase;
+	font-size: 1.1em;
+	width:  500px;
+	text-align: center;
+	margin:  10px auto;
+}
+#contact-form-container{
+	text-transform: uppercase;
+	border: 4px solid #333;
+	padding: 2px 2px;
+	width: 472px;
+	margin: 10px auto;
+	text-align: center;
+}
+#contact-form-container p {
+	color: #999;
+	font-family: 'ArialBlack', arial, sans-serif;
+}
+#contact-form {
+	margin: 10px;
+	padding:  10px;
+	border:  1px solid #999;
+}
+#contact-form label {
+	clear: both;
+	display: block;
+	text-align: left;
+	text-transform: lowercase;
+}
+#contact-form input[type="text"]{
+	text-align: left;
+	width: 97%;
+	float: left;
+	margin-bottom: 10px;
+	background: #EEE;
+	border:  1px solid #ddd;
+	padding: 5px;
+	border-radius: 4px;
+}
+
+#contact-form textarea{
+	text-align: left;
+	width: 97%;
+	float: left;
+	margin-bottom: 10px;
+	background: #EEE;
+	padding: 5px;
+	border:  1px solid #ddd;
+	border-radius: 4px;
+}
+
+#contact-form input[type="submit"]{
+	background: transparent;
+	border: 2px solid #555;
+	padding: 5px;
+	font-family: 'Muli';
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+	color: #555;
+}
+#login-link {
+	width:  100px;
+	margin:  10px auto;
+	text-align: center;
+}
+#login-link a{
+	font-size:  1.2em;
+	color: #333;
+	text-decoration: none;	
+}
+#login-link a:hover {
+	text-decoration: underline;
+}
+#intro-description{
+	text-transform: uppercase;
+	border: 4px solid #333;
+	padding: 11px 14px;
+	width: 472px;
+	margin: 10px auto;
+}
+#main-hand, #main-hand-contact {
+	width: 234px;
+	height: 112px;
+	text-align: center;
+	margin: 10px auto;
+	background-image: url(images/big_hand.png);
+	background-repeat: no-repeat;
+	background-position: bottom center;
+}
+.section {
+position: relative;
+padding-top: 90px;
+background-image: url(images/section_bg.jpg);
+background-size: cover;
+clear: both;
+box-shadow: 0 4px 20px rgba(0,0,0,.5);
+}
+
+/* z-index stacking for sections */
+#landing {
+	z-index: 700;
+}
+#portfolio {
+	z-index: 600;
+}
+#services {
+	z-index: 500;
+}
+#case_studies {
+	z-index: 400;
+}
+#artists {
+	z-index: 300;
+}
+#clients {
+	z-index: 200;
+}
+#contact {
+	z-index: 100;
+}
+#portfolio-nav li {
+	list-style: none;
+	float:  left;
+	padding:  4px;
+}
+#portfolio-wrapper{
+float: left;
+overflow: hidden;
+}
+#portfolio-nav{
+	width: 100%;
+	height: auto;
+	background: rgba(0, 0, 0, .5);
+	float: left;
+	position: fixed;
+	top: 0;
+	padding-top: 53px;
+	z-index: 900;
+}
+#portfolio-control {
+	position: absolute;
+	text-align: center;
+	width:  100%;
+	z-index: 900;
+	height:  auto;
+	margin-top: 300px;
+}
+#portfolio-title {
+	width: 300px;
+	height: auto;
+	margin: 0 auto;
+	font-size: 3.5em;
+}
+.hh_text{
+	text-indent: -9999%;
+	display: block;
+	width: 329px;
+	height: 23px;
+	background-image: url(images/1h1h_text.png);
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+#slider {
+	width: 300px;
+	height:  100px;
+	margin: 0 auto;
+}
+.portfolio-entry {
+	width: 100%;
+	float: left;
+	clear: both;
+}
+.post-type-wrapper, #landing .wrapper, #contact .wrapper{
+	width: 960px;
+	height: 100%;
+	margin:  0 auto;
+	overflow: hidden;
+}
+.sidebar {
+	width: 30%;
+	height: 100%;
+	float:  left;
+}
+.section-title {
+	font-family: 'Fredericka the Great';
+	font-size: 3em;
+	font-weight: 100;
+	border-bottom: 4px solid 
+	#333;
+	width: 200px;
+	margin-bottom: 7px;
+}
+.section-logo{
+		text-indent: -9999%;
+		display: block;
+		width: 200px;
+		height: 23px;
+		background-image: url(images/1h1h_text.png);
+		background-repeat: no-repeat;
+		background-position: top center;
+		background-size: contain
+}
+.section-menu {
+	margin-top: 10px;
+}
+.section-menu li a{
+	font-family: "Muli", sans-serif;
+	font-size: 1.1em;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #555;
+}
+.post-box {
+	width:  70%;
+	overflow: hidden;
+	height: 90%;
+}
+.post-title {
+	font-family: 'ArialBlack';
+}
+#landing .post-box, #contact .post-box {
+	width: 100%;
+	height:  auto;
+}
+.feature_postimage {
+	border-bottom: 2px solid #555;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+.feature_postimage img {
+	border:  1px solid #555;
+}
+.post-footer{
+	border-top: 2px solid #555;
+	width: 100%;
+	margin: 20px 0;
+	padding: 20px 0;
+	text-align: center;
+}
+.hathand{
+	width:  65px;
+	height: 45px;
+	background-repeat: no-repeat;
+	background-position: top center;	
+	display: block;
+	text-indent: -9000%;
+}
+.hathand.hat{
+	background-image: url(images/small_hat.png);
+	
+}
+.hathand.hand{
+	background-image: url(images/small_hand.png);
+}
+.post-footer .hathand {
+	margin:  10px auto;
+}

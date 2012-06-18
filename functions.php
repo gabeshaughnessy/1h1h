@@ -13,6 +13,33 @@ function add_excerpts_to_pages() {
      add_post_type_support( 'page', 'excerpt' );
 }
 
+//Register a Main Menu
+register_nav_menu( "homepage", "The fixed menu at the top of pages, uses relative links to scroll through the page." );
+register_nav_menu( "otherpages", "The menu that shows up on other pages besides the homepage, with links to other setions in the site" );
+
+//add javascript to frontend
+
+function my_scripts_method() {
+    wp_enqueue_script('cycle',
+		get_template_directory_uri() . '/js/cycle.js',
+		array('jquery') );   
+   wp_enqueue_script('custom_scripts',
+   		get_template_directory_uri() . '/js/custom.js',
+   		array('jquery') );
+	/*wp_enqueue_script('scrollspy',
+		get_template_directory_uri() . '/js/scrollspy.js',
+		array('jquery') ); */
+	wp_enqueue_script('scroll-to',
+		get_template_directory_uri() . '/js/jquery.scrollTo-1.4.2-min.js',
+		array('jquery') ); 
+	wp_enqueue_script('local-scroll',
+		get_template_directory_uri() . '/js/jquery.localscroll-1.2.7-min.js',
+		array('jquery', 'scroll-to') ); 
+		         
+}    
+ 
+add_action('wp_enqueue_scripts', 'my_scripts_method'); // For use on the Front end (ie. Theme)
+
 
 // ------------------ GET THUMBNAILS --------------------------- 
 // this function will return a thumbnail image from a the current post (it must be used inside the loop)
@@ -32,6 +59,19 @@ function add_excerpts_to_pages() {
 							</div>
 							<?php }
 							} //end of post thumbnail function
+	function hh_get_portfolio_backgrounds($thumbnail_size){
+			if (has_post_thumbnail()) { 
+							
+				$img = get_the_post_thumbnail();
+				$img_id = get_post_thumbnail_id();
+				$img_src = wp_get_attachment_image_src($img_id, $thumbnail_size );
+							?>
+			<div class="portfolio_bg">
+			
+			<img src="<?php echo($img_src[0]);?>" width="100%" height="auto" alt=" <?php the_title();?>"/>
+							</div>
+							<?php }
+							} //end of portfolio background function
 
 
 //The Main Loop:
@@ -70,7 +110,10 @@ function main_loop(){ ?>
 		</div><!-- #primary -->
 <?php }
 
-//The Main Loop:
+
+/* +++++ T H E   P O S T - T Y P E  L O O P ++++++ */
+//////////////////////////////////////////////////////
+
 /*--- post types to draw from:
 	hh_artist
 	hh_case_study
@@ -84,6 +127,7 @@ function main_loop(){ ?>
 	hh_service
 	hh_testimonials
 */
+
 function hh_post_type_loop($hhpost_type, $hhcount){ ?>
 
 	<div class="primary">
@@ -103,30 +147,38 @@ function hh_post_type_loop($hhpost_type, $hhcount){ ?>
 
 				<?php /* Start the Loop */ ?>
 				
-				<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
-				<h2><?php the_title(); ?></h2>
+				<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); 
+				
+				$meta_values = hh_get_meta_values(get_the_ID());
+				?>
+				<div id="post_<?php echo get_the_ID(); ?>" class="post <?php $hhpost_type ?>_post">
+				<?php 
+				if($meta_values['vimeo_link']){
+				echo apply_filters('the_content', $meta_values['vimeo_link']); 
+				}
+				else if($meta_values['youtube_link']){
+				echo apply_filters('the_content', $meta_values['youtube_link']); 
+				}
+				else {
+				 hh_get_the_thumbnails('feature_slide');
+				}
+				?>
+				<h2 class="post-title"><?php the_title(); ?></h2>
+				<?php the_content(); ?>
+				<?php get_template_part('post_footer'); ?>
+				</div><!--end of the post -->
 				<?php endwhile; ?>
 
 				
 
 			<?php else : ?>
 
-				<article id="post-0" class="post no-results not-found">
-					<header class="entry-header">
-						<h1 class="entry-title"></h1>
-					</header><!-- .entry-header -->
-
-					<div class="entry-content">
-						<p>Oops! Couldn't find what you were looking for! Maybe try searching?</p>
-						<?php get_search_form(); ?>
-					</div><!-- .entry-content -->
-				</article><!-- #post-0 -->
+				<p> nothing for you here</p>
 
 			<?php endif; 
 			// Reset Post Data
 			wp_reset_postdata();
 			?>
-			
 			</div><!-- #content -->
 		</div><!-- #primary -->
 <?php }

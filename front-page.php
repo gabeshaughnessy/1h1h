@@ -13,5 +13,13 @@
  */
 
 get_header(); 
-//hh_post_type_loop('hh_service', 10);
+
+get_template_part('content', 'landing');
+wp_nav_menu("homepage");
+get_template_part('content', 'portfolio');
+get_template_part('content', 'services');
+get_template_part('content', 'case_studies');
+get_template_part('content', 'artists');
+get_template_part('content', 'clients');
+get_template_part('content', 'contact');
  get_footer(); ?>
