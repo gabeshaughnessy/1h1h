@@ -130,7 +130,7 @@ body{
 	float:  left;
 }
 #scroll-cta {
-	font-size: 1.4em;
+	font-size: 22px;
 	width:  500px;
 	text-align: center;
 	margin:  10px auto;
@@ -140,7 +140,7 @@ body{
 	padding: 0px 26px;
 }
 #call-cta {
-	font-size: 1.3em;
+	font-size: 21px;
 	width:  500px;
 	text-align: center;
 	margin:  10px auto;
@@ -153,7 +153,7 @@ body{
 
 #address-cta {
 	text-transform: uppercase;
-	font-size: 1.1em;
+	font-size: 18px;
 	width:  500px;
 	text-align: center;
 	margin:  10px auto 30px;
@@ -226,7 +226,7 @@ body{
 	clear: both;
 }
 #login-link a{
-	font-size:  1.2em;
+	font-size:  19px;
 	color: #333;
 	text-decoration: none;	
 	float:  left;
