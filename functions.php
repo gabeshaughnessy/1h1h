@@ -130,9 +130,6 @@ function main_loop(){ ?>
 
 function hh_post_type_loop($hhpost_type, $hhcount){ ?>
 
-	<div class="primary">
-			<div class="content" role="main">
-
 			<?php 
 			$args = array(
 				
@@ -179,8 +176,61 @@ function hh_post_type_loop($hhpost_type, $hhcount){ ?>
 			// Reset Post Data
 			wp_reset_postdata();
 			?>
-			</div><!-- #content -->
-		</div><!-- #primary -->
+	
 <?php }
+
+function hh_section_page_loop($hh_pageID){ ?>
+
+
+			<?php 
+			$args = array(
+				
+						'page_id' => $hh_pageID
+						
+					
+			);
+			$custom_query = new WP_Query( $args );
+			if ( $custom_query->have_posts() ) : ?>
+
+			
+
+				<?php /* Start the Loop */ ?>
+				
+				<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); 
+				
+				$meta_values = hh_get_meta_values(get_the_ID());
+				?>
+				<div id="post_<?php echo get_the_ID(); ?>" class="post section_page">
+				<div class="post-intro">
+				<?php 
+				if($meta_values['vimeo_id']){
+				echo apply_filters('the_content', $meta_values['vimeo_id']); 
+				}
+				else if($meta_values['youtube_id']){
+				echo apply_filters('the_content', $meta_values['youtube_id']); 
+				}
+				else {
+				 hh_get_the_thumbnails('feature_slide');
+				}
+				?></div>
+				<!--<h2 class="post-title"><?php the_title(); ?></h2>-->
+				<?php the_content(); ?>
+				<?php get_template_part('post_footer'); ?>
+				</div><!--end of the post -->
+				<?php endwhile; ?>
+
+				
+
+			<?php else : ?>
+
+				<p> nothing for you here</p>
+
+			<?php endif; 
+			// Reset Post Data
+			wp_reset_postdata();
+			?>
+		
+<?php }
+
 
  ?>
