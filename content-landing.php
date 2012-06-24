@@ -1,7 +1,7 @@
 <?php 
 //The landing page content
 ?>
-<div id="landing" class="section">
+<div id="landing" class="section active">
 	<div id="landing-wrapper" class="wrapper">
 		<div class="post-box">
 			<div id="main-hat" class="hat"><span class="fredericka">San Francisco, CA</span></div>

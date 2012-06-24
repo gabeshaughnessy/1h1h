@@ -253,15 +253,20 @@ body{
 }
 
 .section {
-position: relative;
-padding-top: 35px;
+position: absolute;
+padding-top: 65px;
+
 background-image: url(images/section_bg.jpg);
 background-size: cover;
 clear: both;
 box-shadow: 0 4px 20px rgba(0,0,0,.5);
 }
+#portfolio.section{
+	padding-top: 0;
+}
 
 /* z-index stacking for sections */
+
 #landing {
 	z-index: 700;
 }
