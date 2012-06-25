@@ -328,7 +328,7 @@ jQuery(window).on("mousewheel", function(event, delta, deltaX, deltaY) {
    
     //console.log(delta, deltaX, deltaY);
 });
-jQuery(window).swipe({
+jQuery('#wrapper').swipe({
 	swiped: function (e, ui) {
 		alert(ui.swipeDirection);
 	}
