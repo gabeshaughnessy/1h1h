@@ -57,6 +57,7 @@ body{
  font-family: 'Muli', arial, sans-serif;
 }
 #wrapper {
+	opacity: 0;
 	overflow:  hidden;
 }
 .menu-main-menu-container {

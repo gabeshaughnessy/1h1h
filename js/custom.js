@@ -329,7 +329,9 @@ jQuery(window).on("mousewheel", function(event, delta, deltaX, deltaY) {
     //console.log(delta, deltaX, deltaY);
 });
 
-	
+jQuery(window).load(function(){
+	jQuery('#wrapper').animate({'opacity':1},1400);
+});	
 jQuery(document).ready(function($){
 navTabActivate('#portfolio .nav-tab', '#portfolio-nav');	
 hhAccordion('#contact-accordion');
