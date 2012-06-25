@@ -342,7 +342,7 @@ jQuery(".section").touchwipe({//touch settings
      wipeRight: function() { alert("right"); },
      wipeUp: function() { skrullStack(100, 4);},
      wipeDown: function() { 
-     skrullStack(-100, 4);
+     skrullStack(-250, 4);
       },
      min_move_x: 20,
      min_move_y: 20,
