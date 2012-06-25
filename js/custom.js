@@ -328,6 +328,12 @@ jQuery(window).on("mousewheel", function(event, delta, deltaX, deltaY) {
    
     //console.log(delta, deltaX, deltaY);
 });
+jQuery(window).swipe({
+	swiped: function (e, ui) {
+		alert(ui.swipeDirection);
+	}
+	});
+
 
 jQuery(window).load(function(){
 	jQuery('#wrapper').animate({'opacity':1},1400);

@@ -55,7 +55,10 @@ time, mark, audio, video {
 body{
  color:  #333;
  font-family: 'Muli', arial, sans-serif;
-}
+ /* For Swipe Events on windows tablets */
+ overflow: hidden; 
+ -ms-content-zooming: none;/* Disable pan/zoom */
+ }
 #wrapper {
 	opacity: 0;
 	overflow:  hidden;
