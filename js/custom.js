@@ -328,11 +328,15 @@ jQuery(window).on("mousewheel", function(event, delta, deltaX, deltaY) {
    
     //console.log(delta, deltaX, deltaY);
 });
-jQuery('#wrapper').swipe({
-	swiped: function (e, ui) {
-		alert(ui.swipeDirection);
-	}
-	});
+jQuery("#wrapper").touchwipe({
+     wipeLeft: function() { alert("left"); },
+     wipeRight: function() { alert("right"); },
+     wipeUp: function() { alert("up"); },
+     wipeDown: function() { alert("down"); },
+     min_move_x: 20,
+     min_move_y: 20,
+     preventDefaultEvents: true
+});
 
 
 jQuery(window).load(function(){
