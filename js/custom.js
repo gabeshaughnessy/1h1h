@@ -337,9 +337,9 @@ jQuery(window).load(function(){
 });	
 jQuery(document).ready(function($){
 
-jQuery(".section").touchwipe({//touch settings
-     wipeLeft: function() { alert("left"); },
-     wipeRight: function() { alert("right"); },
+jQuery("#wrapper").touchwipe({//touch settings
+     wipeLeft: function() {  },
+     wipeRight: function() {  },
      wipeUp: function() { skrullStack(100, 4);},
      wipeDown: function() { 
      skrullStack(-250, 4);
