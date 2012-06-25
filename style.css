@@ -76,6 +76,9 @@ body{
 	-o-transition: background-position .5s ease-in-out;
 	transition: background-position .5s ease-in-out;
 }
+.logged-in .menu-main-menu-container {
+	top: 27px;
+}
 #menu-main-menu {
 	width: 960px;
 
@@ -308,6 +311,9 @@ overflow: hidden;
 	padding-top: 53px;
 	z-index: 900;
 }
+.logged-in #portfolio-nav {
+		top: 27px;
+}
 .nav-tab {
 	cursor: pointer;
 	display: block;
@@ -324,6 +330,9 @@ overflow: hidden;
 	color: rgba(255, 255, 255, .5);
 	padding: 0;
 	line-height: 24px;
+}
+.logged-in .nav-tab {
+	top: 77px;
 }
 #portfolio-control {
 	position: absolute;
