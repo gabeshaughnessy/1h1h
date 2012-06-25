@@ -18,7 +18,7 @@
 						<div class="content" role="main">
 				<?php
 				//need to do the first page loop here, getting the content from a page called by id
-				hh_section_page_loop(407);
+				hh_section_page_loop(of_get_option('clients_intro_page', 'no clients page selected'));
 				 hh_post_type_loop('hh_client', 10)
 				?>
 				</div>
