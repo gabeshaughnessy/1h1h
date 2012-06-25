@@ -337,11 +337,13 @@ jQuery(window).load(function(){
 });	
 jQuery(document).ready(function($){
 
-jQuery(".section").touchwipe({
+jQuery(".section").touchwipe({//touch settings
      wipeLeft: function() { alert("left"); },
      wipeRight: function() { alert("right"); },
-     wipeUp: function() { alert("up"); },
-     wipeDown: function() { alert("down"); },
+     wipeUp: function() { skrullStack(4, 4);},
+     wipeDown: function() { 
+     skrullStack(-4, 4);
+      },
      min_move_x: 20,
      min_move_y: 20,
      preventDefaultEvents: true
