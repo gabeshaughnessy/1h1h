@@ -328,7 +328,16 @@ jQuery(window).on("mousewheel", function(event, delta, deltaX, deltaY) {
    
     //console.log(delta, deltaX, deltaY);
 });
-jQuery("#wrapper").touchwipe({
+
+
+
+
+jQuery(window).load(function(){
+	jQuery('#wrapper').animate({'opacity':1},1400);
+});	
+jQuery(document).ready(function($){
+
+jQuery(".section").touchwipe({
      wipeLeft: function() { alert("left"); },
      wipeRight: function() { alert("right"); },
      wipeUp: function() { alert("up"); },
@@ -338,11 +347,6 @@ jQuery("#wrapper").touchwipe({
      preventDefaultEvents: true
 });
 
-
-jQuery(window).load(function(){
-	jQuery('#wrapper').animate({'opacity':1},1400);
-});	
-jQuery(document).ready(function($){
 navTabActivate('#portfolio .nav-tab', '#portfolio-nav');	
 hhAccordion('#contact-accordion');
 	
