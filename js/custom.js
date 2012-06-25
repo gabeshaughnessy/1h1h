@@ -340,9 +340,9 @@ jQuery(document).ready(function($){
 jQuery(".section").touchwipe({//touch settings
      wipeLeft: function() { alert("left"); },
      wipeRight: function() { alert("right"); },
-     wipeUp: function() { skrullStack(4, 4);},
+     wipeUp: function() { skrullStack(100, 4);},
      wipeDown: function() { 
-     skrullStack(-4, 4);
+     skrullStack(-100, 4);
       },
      min_move_x: 20,
      min_move_y: 20,
