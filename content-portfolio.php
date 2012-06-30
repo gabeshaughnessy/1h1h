@@ -72,7 +72,7 @@
 	<div id="portfolio-control">
 		<div id="portfolio-title" > <span class="hh_text">One Hat One Hand</span> <span class="fredericka" >Portfolio</span></div>
 	
-		<div id="slider">slider goes here</div>
+		<div id="slider"></div>
 	</div>
 	
 </div>

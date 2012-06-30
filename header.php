@@ -11,12 +11,21 @@
 <meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
 <title><?php wp_title( '&laquo;', true, 'right' ); ?> <?php bloginfo( 'name' ); ?></title>
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+
+<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/jquery-ui-1.8.21.custom.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" media="screen" />
 <!-- Google Fonts -->
 <link href='http://fonts.googleapis.com/css?family=Fredericka+the+Great' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'>
 <!-- End google fonts -->
+
+<script type="text/javascript">
+//Creates a global variable with the theme directory for use in js functions
+var templateDir = "<?php bloginfo('template_directory') ?>";
+</script>
+
+
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> >

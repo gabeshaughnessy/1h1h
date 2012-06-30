@@ -13,7 +13,7 @@ function skrullStack(skrullAmount, skrullMultiplier){
 	//console.log('skrullPos = ', skrullPos);
 	//which section is currently active? Start by setting the first section active, then remove the class and apply it to the next section in the DOM
 	activeSection = jQuery('body').find('.section.active');
-	activeSection.nextAll('.section').first().css({"top":0});
+	activeSection.nextAll('.section').first().animate({"top":0}, {'duration':500, 'queue':false});
 	//console.log('Active Section = ', activeSection.attr('id'));
 	//give that section a negative top margin to equal the skrullCount
 	
@@ -31,19 +31,19 @@ function skrullStack(skrullAmount, skrullMultiplier){
 	
 	if(activeSection.length > 0){
 	
-	if(activeSection.offset().top > 60 ){
+	if(activeSection.offset().top > 0 ){
 	console.log('going up');
 		
 		newSection = activeSection.prevAll('.section').first();
 			
 		if(newSection.length > 0){		
-			console.log(newSection);
-			newSection.animate({"top": 0}, 500, function(){
+			//console.log(newSection);
+			newSection.animate({"top": 0},{'duration':1000, 'queue':false}, function(){
 			
 			newSection.addClass('active');
 			
-			console.log('closest section: ', activeSection.prevAll('.section').first());
-			console.log('newSection: ', newSection);
+			//console.log('closest section: ', activeSection.prevAll('.section').first());
+			//console.log('newSection: ', newSection);
 			
 			if(activeSection.prevAll('.section').first().length > 0){
 			activeSection.removeClass('active');
@@ -337,16 +337,39 @@ jQuery(window).load(function(){
 });	
 jQuery(document).ready(function($){
 
-jQuery("#wrapper").touchwipe({//touch settings
+jQuery("#landing-wrapper").touchwipe({//touch settings
+     wipeLeft: function() {  },
+     wipeRight: function() {  },
+     wipeUp: function() { },
+     wipeDown: function() { 
+     skrullStack(-400, 4);
+     $('#wrapper').scrollTop(0);
+      },
+     min_move_x: 100,
+     min_move_y: 100,
+     preventDefaultEvents: false
+});
+jQuery(" #portfolio-wrapper").touchwipe({//touch settings
      wipeLeft: function() {  },
      wipeRight: function() {  },
      wipeUp: function() { skrullStack(100, 4);},
      wipeDown: function() { 
-     skrullStack(-250, 4);
+     skrullStack(-400, 4);
       },
-     min_move_x: 20,
-     min_move_y: 20,
-     preventDefaultEvents: true
+     min_move_x: 100,
+     min_move_y: 30,
+     preventDefaultEvents: false
+});
+jQuery(" #contact-wrapper").touchwipe({//touch settings
+     wipeLeft: function() {  },
+     wipeRight: function() {  },
+     wipeUp: function() { skrullStack(100, 4);},
+     wipeDown: function() { 
+    
+      },
+     min_move_x: 100,
+     min_move_y: 30,
+     preventDefaultEvents: false
 });
 
 navTabActivate('#portfolio .nav-tab', '#portfolio-nav');	
@@ -369,6 +392,34 @@ hhAccordion('#contact-accordion');
 	    } 
 	}
 	);
+	
+	//Build the portfolio slider 
+	$(function() {
+	
+	var oldAmount = 0;
+	var sliderLength = 100;
+	var numberOfSlides = $('#portfolio-wrapper').children().length;
+	console.log(numberOfSlides);
+	sliderStep = sliderLength/numberOfSlides;
+			$( "#slider" ).slider({
+				value:0,
+				min: 0,
+				max: sliderLength,
+				step: sliderStep,
+				slide: function( event, ui ) {
+				if (ui.value > oldAmount){
+					$('#portfolio-wrapper').cycle('next');
+				}
+				else if(ui.value < oldAmount){
+					$('#portfolio-wrapper').cycle('prev');
+				}
+				oldAmount = ui.value;
+					console.log(ui.value);
+					
+				}
+			});
+			//$( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+		});
 	
 	$('#portfolio-nav').after('<a class="nav-tab">+</a>');
 	skrullStack(0,0);
@@ -445,5 +496,19 @@ function buildPageAnchors(slide){
 	    return false; 
 	}); 
 	});
+
+/* Image Textures */
+$('img').each(function(){
+	$(this).wrap('<div class="image-wrapper">');
+	$(this).parent().css({'background-image': 'url('+templateDir + '/images/paper_bg.png), url('+ $(this).attr('src')+')', 'background-repeat': 'repeat, no-repeat', 'background-size':'100px 100px, contain'});
+	
+	$(this).css({'opacity':0});
+	$('.image-wrapper img').mouseover(function(e){
+		$(this).animate({'opacity':1}, {'duration':'fast', 'queue':false});
+	});
+	$('.image-wrapper img').mouseleave(function(e){
+		$(this).animate({'opacity':0}, {'duration':'fast', 'queue':false});
+	});
+});
 	
 });//end document ready

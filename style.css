@@ -233,7 +233,7 @@ body{
 	clear: both;
 }
 #login-link a{
-	font-size:  19px;
+	font-size:  18px;
 	color: #333;
 	text-decoration: none;	
 	float:  left;
@@ -363,7 +363,7 @@ overflow: hidden;
 }
 #slider {
 	width: 300px;
-	height:  100px;
+	height:  4px;
 	margin: 0 auto;
 }
 .portfolio-entry {
@@ -390,6 +390,7 @@ overflow: hidden;
 	#333;
 	width: 200px;
 	margin-bottom: 7px;
+	cursor: pointer;
 }
 .section-logo{
 		text-indent: -9999%;
@@ -442,7 +443,7 @@ overflow: hidden;
 	padding-bottom: 20px;
 	margin-bottom: 20px;
 }
-.feature_postimage img, .feature_postimage iframe {
+.feature_postimage img, .feature_postimage iframe, .feature_postimage .image-wrapper {
 	border:  1px solid #555;
 }
 .post-footer{
@@ -509,3 +510,20 @@ overflow: hidden;
 .post-footer .hathand a{
 	margin:  10px auto;
 }
+
+/* --- Jquery UI Slider overrides -- */
+.ui-widget-content {
+	background: #333;
+	border: 1px solid #222;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background: transparent url(images/hatches50px.png) repeat;
+	border: 2px solid #222;
+	border-radius: 12px;
+	margin-top: -5px
+}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { 
+border: 2px solid #333;
+outline-width: 0;
+outline-color: transparent; 
+background:  transparent url(images/hatches50px.png) repeat; }
