@@ -93,7 +93,7 @@ function resizeSections(){
 	//console.log(windowWidth);
 	jQuery('#portfolio-wrapper').css({"width": windowWidth, "height": windowHeight});
 	jQuery('.section').css({"width": windowWidth, "min-height": windowHeight});
-	jQuery('body').css({'height':windowHeight, 'overflow':'hidden'});
+	//jQuery('body').css({'height':windowHeight, 'overflow':'hidden'});
 	//jQuery('.menu-main-menu-container').css({"width": windowWidth});
 	var menuPos =  jQuery('#menu-main-menu').offset();
 	jQuery('#portfolio-nav').css({"paddingLeft": menuPos.left});
@@ -168,7 +168,7 @@ function skrullCheck(){//check the position of the window and make necessary adj
 function whichSectionIsActive(){
 
 if(jQuery('#landing').hasClass('active')){
-	jQuery('.menu-main-menu-container').slideUp('slow');
+	//jQuery('.menu-main-menu-container').slideUp('slow');
 	jQuery('#portfolio-nav').slideUp('fast');
 	jQuery('#portfolio .nav-tab').hide();
 }
@@ -324,7 +324,7 @@ jQuery(window).scroll(function(){
 
 // using the mousewheel 
 jQuery(window).on("mousewheel", function(event, delta, deltaX, deltaY) {	
-   skrullStack(delta, 4);
+  // skrullStack(delta, 4);
    
     //console.log(delta, deltaX, deltaY);
 });
@@ -376,7 +376,11 @@ navTabActivate('#portfolio .nav-tab', '#portfolio-nav');
 hhAccordion('#contact-accordion');
 	
 	menuNav();//replacement for smooth scroll to handle the stacked sections
-	//$('#menu-main-menu').localScroll({offset: {top:-50, left:0} });
+	$('#menu-main-menu').localScroll({offset: {top:0, left:0}, onBefore: function(){
+	console.log(this);
+	
+	
+	} });
 	resizeSections();
 	
 	$('#portfolio-wrapper').before('<ul id="portfolio-nav">').cycle({ 
@@ -485,7 +489,7 @@ function buildPageAnchors(slide){
 	}
 	);
 	
-	$('.menu-main-menu-container').hide();
+	//$('.menu-main-menu-container').hide();
 	$('#portfolio-nav').hide();
 	
 

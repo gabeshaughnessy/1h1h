@@ -59,12 +59,7 @@ function my_scripts_method() {
 	wp_enqueue_script('scrollspy',
 		get_template_directory_uri() . '/js/scrollspy.js',
 		array('jquery') ); 
-	wp_enqueue_script('scroll-to',
-		get_template_directory_uri() . '/js/jquery.scrollTo-1.4.2-min.js',
-		array('jquery') ); 
-	wp_enqueue_script('local-scroll',
-		get_template_directory_uri() . '/js/jquery.localscroll-1.2.7-min.js',
-		array('jquery', 'scroll-to') ); 
+	
 	
 	wp_enqueue_script('swipe',
 		get_template_directory_uri() . '/js/jquery.swipe.js',
@@ -78,6 +73,12 @@ function my_scripts_method() {
 	wp_enqueue_script('mousewheel',
 		get_template_directory_uri() . '/js/jquery.mousewheel.js',
 		array('jquery') ); 
+	wp_enqueue_script('scroll-to',
+		get_template_directory_uri() . '/js/jquery.scrollTo-1.4.2-min.js',
+		array('jquery') ); 
+	wp_enqueue_script('local-scroll',
+		get_template_directory_uri() . '/js/jquery.localscroll-1.2.7-min.js',
+		array('jquery', 'scroll-to') ); 
 	 	
 	wp_enqueue_script('custom_scripts',
 		get_template_directory_uri() . '/js/custom.js',
