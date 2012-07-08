@@ -261,11 +261,14 @@ body{
 
 .section {
 padding-top: 65px;
-
+position: relative;
 background-image: url(images/section_bg.jpg);
 background-size: cover;
 clear: both;
-box-shadow: 0 4px 20px rgba(0,0,0,.5);
+-webkit-box-shadow: 0 4px 40px rgba(0,0,0,.5);
+-moz-box-shadow: 0 4px 40px rgba(0,0,0,.5);
+-o-box-shadow: 0 4px 40px rgba(0,0,0,.5);
+box-shadow: 0 4px 40px rgba(0,0,0,.5);
 }
 #portfolio.section{
 	padding-top: 0;
@@ -510,6 +513,9 @@ overflow: hidden;
 	margin:  10px auto;
 }
 
+.activeSlide img {
+	opacity: 1 !important;
+}
 /* --- Jquery UI Slider overrides -- */
 .ui-widget-content {
 	background: #333;

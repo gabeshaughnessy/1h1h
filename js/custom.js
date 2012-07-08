@@ -1,5 +1,5 @@
 /* global variables */
-var activeSection;
+var activeSection = jQuery('#landing');
 var skrullPos = 0;
 var showedPortfolioNav;
 var menuLeftPos;
@@ -71,7 +71,7 @@ function skrullStack(skrullAmount, skrullMultiplier){
 				newSection.addClass('active');
 				activeSection.removeClass('active');
 				activeSection = newSection;
-				activeSection.css({"top": 0});
+				//activeSection.css({"top": 0});
 				skrullPos = 0;
 				navTabActivate('#portfolio .nav-tab', '#portfolio-nav');
 				whichSectionIsActive();
@@ -86,13 +86,34 @@ function skrullStack(skrullAmount, skrullMultiplier){
 	jQuery('#portfolio-nav').slideUp('slow');
 }//End skrullstack function
 
+function moveSection(event, visible) {
+ 
+  if (visible == true) {
+	 activeSection =  jQuery(event.currentTarget);		
+	
+    activeSection.addClass('active');
+  jQuery(window).scrollTo(activeSection, 1000, {'offset':0});
+
+  } 
+  else {
+   jQuery(event.currentTarget).removeClass('active');
+
+  }
+  whichSectionIsActive();
+  moveMenuIndicator();
+  if(activeSection.attr('id') == ('portfolio')){
+  jQuery('#portfolio .nav-tab').show('slow');
+  }
+}
+
+
 
 function resizeSections(){
 	var windowWidth = jQuery(window).width();
 	var windowHeight = jQuery(window).height();
 	//console.log(windowWidth);
-	jQuery('#portfolio-wrapper').css({"width": windowWidth, "height": windowHeight});
-	jQuery('.section').css({"width": windowWidth, "min-height": windowHeight});
+	jQuery('#portfolio-wrapper').css({"width": windowWidth, "height": windowHeight + 100});
+	jQuery('.section').css({"width": windowWidth, "min-height": windowHeight + 100});
 	//jQuery('body').css({'height':windowHeight, 'overflow':'hidden'});
 	//jQuery('.menu-main-menu-container').css({"width": windowWidth});
 	var menuPos =  jQuery('#menu-main-menu').offset();
@@ -131,7 +152,7 @@ function skrullCheck(){//check the position of the window and make necessary adj
 	var servicePos = jQuery("#services").offset();
 	var contactPos = jQuery("#contact").offset();
 	
-	if(skrullPos >= portfolioPos.top && skrullPos <= servicePos.top -300){
+	if(skrullPos >= portfolioPos.top && skrullPos <= servicePos.top){
 	jQuery('.menu-main-menu-container').slideDown('fast');
 		if( showedPortfolioNav != true){
 			//jQuery('#portfolio-nav').slideDown('slow');
@@ -172,32 +193,38 @@ if(jQuery('#landing').hasClass('active')){
 	jQuery('#portfolio-nav').slideUp('fast');
 	jQuery('#portfolio .nav-tab').hide();
 }
+
+else if (jQuery('#services').hasClass('active')) {
+jQuery('#portfolio-nav').slideUp('fast');
+jQuery('#portfolio .nav-tab').hide();
+
+	
+}
 else if(jQuery('#portfolio').hasClass('active')){
 	jQuery('.menu-main-menu-container').slideDown('slow');
 	jQuery('#portfolio .nav-tab').show('slow');
 	resizeSections();
 
 }
-else if (jQuery('#services').hasClass('active')) {
-jQuery('#portfolio-nav').slideUp('fast');
-jQuery('#portfolio .nav-tab').hide();
-	
-}
 else if (jQuery('#case_studies').hasClass('active')) {
 	jQuery('#portfolio .nav-tab').hide();
 	jQuery('.menu-main-menu-container').slideDown('slow');
+	jQuery('#portfolio-nav').slideUp('fast');
 }
 else if (jQuery('#artists').hasClass('active')) {
 	jQuery('#portfolio .nav-tab').hide();
 	jQuery('.menu-main-menu-container').slideDown('slow');
+	jQuery('#portfolio-nav').slideUp('fast');
 }
 else if (jQuery('#clients').hasClass('active')) {
 	jQuery('#portfolio .nav-tab').hide();
 	jQuery('.menu-main-menu-container').slideDown('slow');
+	jQuery('#portfolio-nav').slideUp('fast');
 }
 else if (jQuery('#contact').hasClass('active')) {
 		jQuery('#portfolio .nav-tab').hide();
-		jQuery('.menu-main-menu-container').slideUp('fast');
+		jQuery('#portfolio-nav').slideUp('fast');
+		//jQuery('.menu-main-menu-container').slideUp('fast');
 }
 
 moveMenuIndicator();
@@ -206,17 +233,20 @@ moveMenuIndicator();
 
 function menuNav(){
 jQuery('#menu-main-menu .menu-item a').click(function(e){
+
+	jQuery('.section').unbind('inview', moveSection);
+	
 	var sectionID = jQuery(this).attr('href');
 	activeSection = jQuery(sectionID);
 	console.log('menu activated: ', activeSection);
 	jQuery('.section').each(function(){
-		jQuery(this).removeClass('active').animate({"top":jQuery(this).height() * (-1.3)}, { queue: true, duration: 500 });
+		jQuery(this).removeClass('active');
 	});
-	activeSection.animate({"top":0},{ queue: false, duration: 1000 });
+	//activeSection.animate({"top":0},{ queue: false, duration: 1000 });
 	activeSection.addClass('active');
 	moveMenuIndicator();
 	skrullPos = 0;
-	//navTabActivate('#portfolio .nav-tab', '#portfolio-nav');
+	navTabActivate('#portfolio .nav-tab', '#portfolio-nav');
 	whichSectionIsActive();
 	e.preventDefault();
 });
@@ -237,7 +267,10 @@ function moveMenuIndicator(){
 	
 	});//end each for menu item links
 	
-	if(activeSection.attr('id') == "portfolio"){
+	if(activeSection.attr('id') == "landing"){
+		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos - 50 + "px 0" });
+	}
+	else if(activeSection.attr('id') == "portfolio"){
 		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos - 500 + "px 0" });
 	}
 	else if(activeSection.attr('id') == "services"){
@@ -315,12 +348,6 @@ jQuery(window).resize(function(){
 	whichSectionIsActive();
 });
 
-jQuery(window).scroll(function(){
-	//skrullStack(100);
-	//skrullCheck();
-	//moveMenuIndicator();
-	//navTabActivate('#portfolio .nav-tab', '#portfolio-nav');
-	});
 
 // using the mousewheel 
 jQuery(window).on("mousewheel", function(event, delta, deltaX, deltaY) {	
@@ -330,10 +357,26 @@ jQuery(window).on("mousewheel", function(event, delta, deltaX, deltaY) {
 });
 
 
+jQuery(window).scroll(
+function(){
 
+if(jQuery(window).scrollTop() == 0 || jQuery(window).scrollTop() > jQuery('#contact').offset().top - 100){
+jQuery('.menu-main-menu-container').slideUp('fast');
+jQuery('#portfolio .nav-tab').hide('fast');
+
+}
+else if(jQuery(window).scrollTop() > jQuery('#landing').height() && jQuery(window).scrollTop() < jQuery('#contact').offset().top - 100){
+jQuery('.menu-main-menu-container').slideDown('fast');
+}
+
+}
+);
 
 jQuery(window).load(function(){
-	jQuery('#wrapper').animate({'opacity':1},1400);
+	navTabActivate('#portfolio .nav-tab', '#portfolio-nav');
+	jQuery('#wrapper').animate({'opacity':1},1400);	
+	jQuery('#portfolio, #services, #case_studies, #artists, #clients, #contact').bind('inview', moveSection);
+	resizeSections();
 });	
 jQuery(document).ready(function($){
 
@@ -378,9 +421,9 @@ hhAccordion('#contact-accordion');
 	menuNav();//replacement for smooth scroll to handle the stacked sections
 	$('#menu-main-menu').localScroll({offset: {top:0, left:0}, onBefore: function(){
 	console.log(this);
-	
-	
-	} });
+	}, onAfter: function(){
+	jQuery('#portfolio, #services, #case_studies, #artists, #clients, #contact').bind('inview', moveSection);
+		}  });
 	resizeSections();
 	
 	$('#portfolio-wrapper').before('<ul id="portfolio-nav">').cycle({ 
@@ -466,7 +509,7 @@ function buildPageAnchors(slide){
 	}
 	);
 	$('#case_studies .content').cycle({ 
-	    fx:     'fade', 
+	    fx:     'scrollHorz', 
 	    speed:  'fast', 
 	    timeout: 0, 
 	    pager:  '#case_studies-menu', 
@@ -477,7 +520,7 @@ function buildPageAnchors(slide){
 	}
 	);
 	$('#artists .content').cycle({ 
-	    fx:     'fade', 
+	    fx:     'scrollHorz', 
 	    speed:  'fast', 
 	    timeout: 0, 
 	    pager:  '#artists-menu', 

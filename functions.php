@@ -78,8 +78,10 @@ function my_scripts_method() {
 		array('jquery') ); 
 	wp_enqueue_script('local-scroll',
 		get_template_directory_uri() . '/js/jquery.localscroll-1.2.7-min.js',
-		array('jquery', 'scroll-to') ); 
-	 	
+		array('jquery', 'scroll-to') );
+	wp_enqueue_script('inview',
+		get_template_directory_uri() . '/js/inview.js',
+		array('jquery'));
 	wp_enqueue_script('custom_scripts',
 		get_template_directory_uri() . '/js/custom.js',
 		array('jquery', 'mousewheel') );
