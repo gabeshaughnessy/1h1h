@@ -283,6 +283,7 @@ box-shadow: 0 4px 40px rgba(0,0,0,.5);
 }
 #portfolio {
 	z-index: 600;
+	box-shadow: none;
 }
 #services {
 	z-index: 500;

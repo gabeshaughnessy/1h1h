@@ -92,7 +92,7 @@ function moveSection(event, visible) {
 	 activeSection =  jQuery(event.currentTarget);		
 	//console.log('inview: ',event.currentTarget, event);
     activeSection.addClass('active');
-	  jQuery(window).scrollTo(activeSection, 800, {'offset':50, 'easing': 'easeOutBack' });
+	  jQuery(window).scrollTo(activeSection, 500, {'offset':50, 'easing': 'easeOutBack' });
 	  whichSectionIsActive();
      //unbind the event to this now that it's in view
      
