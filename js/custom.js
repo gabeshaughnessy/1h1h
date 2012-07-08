@@ -90,20 +90,35 @@ function moveSection(event, visible) {
  
   if (visible == true) {
 	 activeSection =  jQuery(event.currentTarget);		
-	
+	//console.log('inview: ',event.currentTarget, event);
     activeSection.addClass('active');
-  jQuery(window).scrollTo(activeSection, 1000, {'offset':0});
-
+	  jQuery(window).scrollTo(activeSection, 800, {'offset':50, 'easing': 'easeOutBack' });
+	  whichSectionIsActive();
+     //unbind the event to this now that it's in view
+     
+	jQuery(event.currentTarget).unbind('inview', moveSection);
   } 
   else {
-   jQuery(event.currentTarget).removeClass('active');
-
+     jQuery(event.currentTarget).removeClass('active');
+	//console.log('outofview: ', event.currentTarget, event);
+	//bind the event here when its out of view
+	jQuery(event.currentTarget).bind('inview', moveSection);
   }
   whichSectionIsActive();
   moveMenuIndicator();
   if(activeSection.attr('id') == ('portfolio')){
   jQuery('#portfolio .nav-tab').show('slow');
+  
   }
+}
+
+function resetSection(event, visible){
+//if the section is out of view
+if (visible != true) {
+ console.log(event.currentTarget);
+ jQuery(event.currentTarget).bind('inview', moveSection);
+ 
+}
 }
 
 
@@ -368,7 +383,7 @@ jQuery('#portfolio .nav-tab').hide('fast');
 else if(jQuery(window).scrollTop() > jQuery('#landing').height() && jQuery(window).scrollTop() < jQuery('#contact').offset().top - 100){
 jQuery('.menu-main-menu-container').slideDown('fast');
 }
-
+whichSectionIsActive();
 }
 );
 
@@ -376,7 +391,9 @@ jQuery(window).load(function(){
 	navTabActivate('#portfolio .nav-tab', '#portfolio-nav');
 	jQuery('#wrapper').animate({'opacity':1},1400);	
 	jQuery('#portfolio, #services, #case_studies, #artists, #clients, #contact').bind('inview', moveSection);
+	jQuery('#portfolio, #services, #case_studies, #artists, #clients, #contact').bind('inview', resetSection);
 	resizeSections();
+	
 });	
 jQuery(document).ready(function($){
 
@@ -419,7 +436,7 @@ navTabActivate('#portfolio .nav-tab', '#portfolio-nav');
 hhAccordion('#contact-accordion');
 	
 	menuNav();//replacement for smooth scroll to handle the stacked sections
-	$('#menu-main-menu').localScroll({offset: {top:0, left:0}, onBefore: function(){
+	$('#menu-main-menu').localScroll({offset: {top:50, left:0}, 'easing': 'easeOutBack', onBefore: function(){
 	console.log(this);
 	}, onAfter: function(){
 	jQuery('#portfolio, #services, #case_studies, #artists, #clients, #contact').bind('inview', moveSection);
@@ -446,7 +463,7 @@ hhAccordion('#contact-accordion');
 	var oldAmount = 0;
 	var sliderLength = 100;
 	var numberOfSlides = $('#portfolio-wrapper').children().length;
-	console.log(numberOfSlides);
+	//console.log(numberOfSlides);
 	sliderStep = sliderLength/numberOfSlides;
 			$( "#slider" ).slider({
 				value:0,
@@ -545,9 +562,9 @@ function buildPageAnchors(slide){
 	});
 
 /* Image Textures */
-$('img').each(function(){
+$('img:not(#portfolio img)').each(function(){
 	$(this).wrap('<div class="image-wrapper">');
-	$(this).parent().css({'background-image': 'url('+templateDir + '/images/paper_bg.png), url('+ $(this).attr('src')+')', 'background-repeat': 'repeat, no-repeat', 'background-size':'100px 100px, contain'});
+	$(this).parent().css({'background-image': 'url('+templateDir + '/images/paper_bg2.png), url('+ $(this).attr('src')+')', 'background-repeat': 'repeat, no-repeat', 'background-size':'1400px 752px, contain', 'background-position':'center, center'});
 	
 	$(this).css({'opacity':0});
 	$('.image-wrapper img').mouseover(function(e){

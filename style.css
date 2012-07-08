@@ -260,7 +260,8 @@ body{
 }
 
 .section {
-padding-top: 65px;
+padding-top: 150px;
+padding-bottom: 150px;
 position: relative;
 background-image: url(images/section_bg.jpg);
 background-size: cover;
@@ -278,6 +279,7 @@ box-shadow: 0 4px 40px rgba(0,0,0,.5);
 
 #landing {
 	z-index: 700;
+	padding-top:  10px;
 }
 #portfolio {
 	z-index: 600;
@@ -296,6 +298,7 @@ box-shadow: 0 4px 40px rgba(0,0,0,.5);
 }
 #contact {
 	z-index: 100;
+	padding-top: 90px;
 }
 #portfolio-nav li {
 	list-style: none;
