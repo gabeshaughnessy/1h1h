@@ -6,7 +6,7 @@
 		
 		
 		<?php //Portfolio Loop Goes Here
-		hh_portfolio_loop('hh_portfolio', 10);
+		hh_portfolio_loop('hh_project', 10);
 		/* +++++ T H E   P O R T F O L I O   L O O P ++++++ */
 		//////////////////////////////////////////////////////
 		function hh_portfolio_loop($hhpost_type, $hhcount){ ?>

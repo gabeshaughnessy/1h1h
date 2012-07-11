@@ -194,10 +194,10 @@ jQuery('#menu-main-menu .menu-item a').click(function(e){
 	//activeSection.animate({"top":0},{ queue: false, duration: 1000 });
 	activeSection.addClass('active');
 	jQuery('.section:not(.active)').each(function(){
-		jQuery(this).animate({'top': -jQuery(this).outerHeight()-100 }, {'duration':'slow', 'easing': 'easeInOutExpo'})}
+		jQuery(this).animate({'top': -jQuery(this).outerHeight()-100 }, {'duration':2000, 'easing': 'easeInOutExpo'})}
 	);
 	jQuery('.active').each(function(){
-		jQuery(this).animate({'top': 0 }, {'duration':'slow', 'easing': 'easeInOutExpo'})}
+		jQuery(this).animate({'top': 0 }, {'duration':2000, 'easing': 'easeInOutExpo'})}
 	);
 	jQuery('body').scrollTop(parseInt(activeSection.attr('data-offset')));
 	moveMenuIndicator();
