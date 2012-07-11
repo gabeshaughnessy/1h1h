@@ -10,7 +10,17 @@ License: GPL 3.0
 License URI: http://www.gnu.org/copyleft/gpl.html
 
 */
-
+/* ipad console for outputting javascript logs */
+.ipad-console {
+	position: fixed;
+	top:  100px;
+	right: 10px;
+	z-index:  10000;
+	color:  #fff;
+	text-shadow: 0 0 3px #000;
+	font-weight: bold;
+	font: monospace;
+}
 /* reset */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -33,6 +43,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* end of the reset */
+
 
 /* Fonts */
 	.muli{
@@ -262,7 +273,7 @@ body{
 .section {
 padding-top: 150px;
 padding-bottom: 150px;
-position: relative;
+position: fixed;
 background-image: url(images/section_bg.jpg);
 background-size: cover;
 clear: both;
@@ -272,7 +283,8 @@ clear: both;
 box-shadow: 0 4px 40px rgba(0,0,0,.5);
 }
 #portfolio.section{
-	padding-top: 0;
+
+	padding: 0;
 }
 
 /* z-index stacking for sections */

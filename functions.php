@@ -83,7 +83,7 @@ function my_scripts_method() {
 		get_template_directory_uri() . '/js/inview.js',
 		array('jquery'));
 	wp_enqueue_script('custom_scripts',
-		get_template_directory_uri() . '/js/custom.js',
+		get_template_directory_uri() . '/js/custom-newscroll.js',
 		array('jquery', 'mousewheel') );
 		
 		         

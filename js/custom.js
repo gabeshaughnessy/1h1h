@@ -89,14 +89,15 @@ function skrullStack(skrullAmount, skrullMultiplier){
 function moveSection(event, visible) {
  
   if (visible == true) {
+  jQuery(event.currentTarget).unbind('inview', moveSection);
 	 activeSection =  jQuery(event.currentTarget);		
 	//console.log('inview: ',event.currentTarget, event);
+	 jQuery(window).scrollTo(activeSection, 500, {'offset':50, 'easing': 'easeOutBack' });
     activeSection.addClass('active');
-	  jQuery(window).scrollTo(activeSection, 500, {'offset':50, 'easing': 'easeOutBack' });
-	  whichSectionIsActive();
+		  whichSectionIsActive();
      //unbind the event to this now that it's in view
      
-	jQuery(event.currentTarget).unbind('inview', moveSection);
+	
   } 
   else {
      jQuery(event.currentTarget).removeClass('active');
@@ -372,8 +373,7 @@ jQuery(window).on("mousewheel", function(event, delta, deltaX, deltaY) {
 });
 
 
-jQuery(window).scroll(
-function(){
+function scrollFunction(){
 
 if(jQuery(window).scrollTop() == 0 || jQuery(window).scrollTop() > jQuery('#contact').offset().top - 100){
 jQuery('.menu-main-menu-container').slideUp('fast');
@@ -384,8 +384,9 @@ else if(jQuery(window).scrollTop() > jQuery('#landing').height() && jQuery(windo
 jQuery('.menu-main-menu-container').slideDown('fast');
 }
 whichSectionIsActive();
-}
-);
+};
+
+jQuery(window).scroll(scrollFunction());
 
 jQuery(window).load(function(){
 	navTabActivate('#portfolio .nav-tab', '#portfolio-nav');

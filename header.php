@@ -29,7 +29,7 @@ var templateDir = "<?php bloginfo('template_directory') ?>";
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> >
-
+<div class="ipad-console"></div><!-- for logging javascript values on an ipad -->
 <div id="header">
 
 </div>
