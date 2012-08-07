@@ -16,7 +16,7 @@ License URI: http://www.gnu.org/copyleft/gpl.html
 	top:  100px;
 	right: 10px;
 	z-index:  10000;
-	color:  #fff;
+	color:  #F00;
 	text-shadow: 0 0 3px #000;
 	font-weight: bold;
 	font: monospace;
@@ -282,6 +282,9 @@ clear: both;
 -o-box-shadow: 0 4px 40px rgba(0,0,0,.5);
 box-shadow: 0 4px 40px rgba(0,0,0,.5);
 }
+.touch .section {
+	position: relative;
+}
 #portfolio.section{
 
 	padding: 0;
@@ -291,7 +294,7 @@ box-shadow: 0 4px 40px rgba(0,0,0,.5);
 
 #landing {
 	z-index: 700;
-	padding-top:  10px;
+	padding-top:  50px;
 }
 #portfolio {
 	z-index: 600;
@@ -369,12 +372,13 @@ overflow: hidden;
 	height: auto;
 	margin: 0 auto;
 	font-size: 3.5em;
+	text-shadow: 0 0 8px white;
 }
 .hh_text{
 	text-indent: -9999%;
 	display: block;
 	width: 329px;
-	height: 23px;
+	height: 33px;
 	background-image: url(images/1h1h_text.png);
 	background-repeat: no-repeat;
 	background-position: top center;
@@ -422,6 +426,7 @@ overflow: hidden;
 }
 .section-menu {
 	margin-top: 10px;
+	list-style: none;
 }
 .section-menu li a{
 	font-family: "Muli", sans-serif;
@@ -446,6 +451,7 @@ overflow: hidden;
 }
 .post-box {
 	width:  70%;
+	float:  right;
 	overflow: hidden;
 	height: 90%;
 }

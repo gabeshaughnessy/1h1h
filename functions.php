@@ -65,6 +65,7 @@ function my_scripts_method() {
 		get_template_directory_uri() . '/js/jquery.swipe.js',
 		array('jquery', 'jquery_ui') );	//swipe events
 		*/
+	wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/modernizr.js', array('jquery') );
 	wp_enqueue_script('touchPunch',
 		get_template_directory_uri() . '/js/jquery.touchPunch.min.js',
 		array('jquery') );	

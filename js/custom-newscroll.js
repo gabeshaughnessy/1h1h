@@ -3,7 +3,27 @@ var pageHeight; //add all the sections to get the page height
 var scrollDistance = 0; // how far have they scrolled down the page?
 var actualHeight = 0; // how big is a section?
 var activeSection;
+var scrollPadding = 200; //give a little resistance/delay when scrolling past a section
+var iPadConsole;
 //+++++++++ Helper Functions +++++++++++
+
+function navTabActivate(tab, target){
+	jQuery(tab).click(function(e){
+	jQuery(target).slideDown('slow');
+	jQuery(this).slideUp('fast');
+	e.preventDefault();
+	});
+}
+function falsePageHeight(){ //make the page the total height of all the sections with fixed positions
+	pageHeight = 0;
+	
+	jQuery('.section').each(function(){
+		pageHeight += jQuery(this).outerHeight();
+		//console.log(pageHeight);
+	});
+	
+	jQuery('body').css('height',pageHeight);
+}//end falsePageHeight
 
 function resizeSections(){
 	var windowWidth = jQuery(window).width();
@@ -16,6 +36,7 @@ function resizeSections(){
 	var menuPos =  jQuery('#menu-main-menu').offset();
 	jQuery('#portfolio-nav').css({"paddingLeft": menuPos.left});
 }
+//End resizeSections
 function imageTexturizer(){//puts a texture over all the images
 
 	jQuery('img:not(#portfolio img)').each(function(){
@@ -31,111 +52,7 @@ function imageTexturizer(){//puts a texture over all the images
 		});
 	});
 	
-}
-
-function setActive() { //determines which section is active based on scroll bar position and the height of the sections.
-
-	jQuery('.section').each(function(){
-		var offset = 0;
-		//add up the height of all the previous sections 
-		jQuery(this).prevAll('.section').each(function(){
-			offset += jQuery(this).outerHeight();
-		});
-		
-		//store the offset in a data attribute
-		jQuery(this).attr('data-offset', offset);
-		
-		if(scrollDistance >= offset && scrollDistance < jQuery(this).outerHeight() + offset){
-			//If the scroll distance is between the offset and the height of the section, this section is active
-			jQuery(this).addClass('active'); //don't use toggle class because this fires for every scroll event
-		}
-		else if(scrollDistance < jQuery(this).outerHeight() + offset){
-		//if we haven't scrolled to the section yet
-		jQuery(this).removeClass('active');
-		jQuery(this).css({'top':0})
-		}
-		else if(scrollDistance > jQuery(this).outerHeight() + offset){
-		//if the window is scrolled past the section
-		jQuery(this).removeClass('active');
-		jQuery(this).css({'top': jQuery(this).outerHeight() +100})
-		}
-		else{
-			jQuery(this).removeClass('active');
-		}
-		
-		
-	});
-}//end setActive
-
-function falsePageHeight(){ //make the page the total height of all the sections with fixed positions
-	pageHeight = 0;
-	
-	jQuery('.section').each(function(){
-		pageHeight += jQuery(this).outerHeight();
-		console.log(pageHeight);
-	});
-	
-	jQuery('body').css('height',pageHeight);
-}
-
-// ++++++ Scroll Event Helper Function - used in touch events too!
-function scrollAction(){
-scrollDistance = jQuery(window).scrollTop();
-activeSection = jQuery('.active');
-
-flipDistance = parseInt(activeSection.attr('data-offset'))-scrollDistance;
-//console.log(flipDistance);
-activeSection.css({'top': flipDistance});
-setActive();
-
-
-}
-
-//++++++++++++Add Touch Support
-function gestureChange(e) {
-	scrollDistance = jQuery(window).scrollTop() + e;
-	jQuery('.ipad-console').html(scrollDistance);
-	activeSection = jQuery('.active');
-	flipDistance = parseInt(activeSection.attr('data-offset'))-scrollDistance;
-	console.log(flipDistance);
-	activeSection.css({'top': flipDistance});
-	setActive();
-	
-}
-function addTouchSupport(){
-document.body.addEventListener("gesturechange", gestureChange, false);
-
-
-	//++++ Touch EVENTS +++++
-	jQuery('.section').touchwipe({//touch settings
-	     wipeLeft: function() {  },
-	     wipeRight: function() {  },
-	     wipeUp: function(){scrollAction()},
-	     wipeDown: function(){scrollAction()},
-	     min_move_x: 10,
-	     min_move_y: 10,
-	     preventDefaultEvents: false
-	});
-}
-
-/* Accordions */
-function hhAccordion(target){
-	jQuery(target).slideUp('fast');
-	var accordionControl = jQuery(target).attr('data-controller');
-	//console.log('Target: ', target, ' Controller: ', accordionControl);
-	jQuery(accordionControl).click(function(e){
-		jQuery(target).toggleClass('in');
-		if(!jQuery(target).hasClass('in')){
-		jQuery(target).slideUp('fast');
-		}
-		else {
-			jQuery(target).slideDown('fast');
-		}
-		
-				e.preventDefault();
-	});
-	
-}//End of accordions function
+}//end imageTexturizer
 
 function whichSectionIsActive(){
 	
@@ -182,6 +99,59 @@ moveMenuIndicator();
 
 }// end of whichSectionIsActive function
 
+
+function setActive() { //determines which section is active based on scroll bar position and the height of the sections.
+
+	jQuery('.section').each(function(){
+		var offset = 0;
+		//add up the height of all the previous sections 
+		jQuery(this).prevAll('.section').each(function(){
+			offset += jQuery(this).outerHeight();
+		});
+		
+		//store the offset in a data attribute
+		jQuery(this).attr('data-offset', offset);
+		
+		if(scrollDistance >= offset + scrollPadding && scrollDistance < jQuery(this).outerHeight() + offset){
+			//If the scroll distance is between the offset and the height of the section, this section is active
+			jQuery(this).addClass('active'); //don't use toggle class because this fires for every scroll event
+			
+		}
+		else if(scrollDistance < jQuery(this).outerHeight() + offset){
+		//if we haven't scrolled to the section yet
+		jQuery(this).removeClass('active');
+			
+			if(jQuery('html').hasClass('no-touch')){
+				jQuery(this).css({'top':0})
+			}
+		}
+		else if(scrollDistance > jQuery(this).outerHeight() + offset){
+		//if the window is scrolled past the section
+		jQuery(this).removeClass('active');
+		
+		if(jQuery('html').hasClass('no-touch')){
+		jQuery(this).css({'top': jQuery(this).outerHeight() +100})
+		}
+		}
+		else{
+			jQuery(this).removeClass('active');
+		}
+		
+		//set menu active
+		
+		if(scrollDistance >= offset && scrollDistance < jQuery(this).outerHeight() + offset - 400){
+			jQuery(this).find('.sidebar').addClass('active-sidebar');
+			//console.log(jQuery('.active .sidebar').height());
+		} 
+		if(scrollDistance > jQuery(this).outerHeight() + offset - 400){
+		jQuery(this).find('.sidebar').removeClass('active-sidebar');
+		}
+		
+		
+		
+	});
+}//end setActive
+
 function menuNav(){ //handles the active class for clicks in the menu
 jQuery('#menu-main-menu .menu-item a').click(function(e){
 	
@@ -221,7 +191,7 @@ function moveMenuIndicator(){
 	//console.log("sectionID: ", sectionID);
 	
 	});//end each for menu item links
-	
+	if(activeSection){
 	if(activeSection.attr('id') == "landing"){
 		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos - 50 + "px 0" });
 	}
@@ -243,13 +213,72 @@ function moveMenuIndicator(){
 	else if(activeSection.attr('id') == "contact"){
 		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos + 290 + "px 0" });
 	}
+	}
 }//end moveMenuIndicator function
 
-function navTabActivate(tab, target){
-	jQuery(tab).click(function(e){
-	jQuery(target).slideDown('slow');
-	jQuery(this).slideUp('fast');
-	e.preventDefault();
+
+// ++++++ Scroll Event Helper Function - used in touch events too!
+function scrollAction(){
+scrollDistance = jQuery(window).scrollTop();
+activeSection = jQuery('.active');
+activeSidebar = jQuery('.active-sidebar');
+flipDistance = parseInt(activeSection.attr('data-offset'))-scrollDistance + scrollPadding;
+//console.log(flipDistance);
+activeSection.css({'top': flipDistance});
+jQuery('.sidebar').css({'position': 'relative', 'top': 'auto'});
+activeSidebar.css({'position':'fixed', 'top': 150});
+setActive();
+
+
+}
+
+
+/* Accordions */
+function hhAccordion(target){
+	jQuery(target).slideUp('fast');
+	var accordionControl = jQuery(target).attr('data-controller');
+	//console.log('Target: ', target, ' Controller: ', accordionControl);
+	jQuery(accordionControl).click(function(e){
+		jQuery(target).toggleClass('in');
+		if(!jQuery(target).hasClass('in')){
+		jQuery(target).slideUp('fast');
+		}
+		else {
+			jQuery(target).slideDown('fast');
+		}
+		
+				e.preventDefault();
+	});
+	
+}//End of accordions function
+
+
+
+
+//++++++++++++Add Touch Support
+function gestureChange(e) {
+	scrollDistance = jQuery(window).scrollTop() + e;
+	jQuery('.ipad-console').html(scrollDistance);
+	activeSection = jQuery('.active');
+	flipDistance = parseInt(activeSection.attr('data-offset'))-scrollDistance;
+	//console.log(flipDistance);
+	activeSection.css({'top': flipDistance});
+	setActive();
+	
+}
+function addTouchSupport(){
+document.body.addEventListener("gesturechange", gestureChange, false);
+
+
+	//++++ Touch EVENTS +++++
+	jQuery('.section').touchwipe({//touch settings
+	     wipeLeft: function() {  },
+	     wipeRight: function() {  },
+	     wipeUp: function(){scrollAction()},
+	     wipeDown: function(){scrollAction()},
+	     min_move_x: 10,
+	     min_move_y: 10,
+	     preventDefaultEvents: false
 	});
 }
 
@@ -289,7 +318,7 @@ function makeCycles(){
 						jQuery('#portfolio-wrapper').cycle('prev');
 					}
 					oldAmount = ui.value;
-						console.log(ui.value);
+						//console.log(ui.value);
 						
 					}
 				});
@@ -365,74 +394,130 @@ function makeCycles(){
 	
 		jQuery('.section-title').each(function(){
 			jQuery(this).click(function() { 
-			console.log(jQuery(this).parent().parent().parent().find('.content'));
+			//console.log(jQuery(this).parent().parent().parent().find('.content'));
 			    jQuery(this).parent().parent().parent().find('.content').cycle(0); 
 			    return false; 
 			}); 
 		});
 	}//End make cycles
-	
-//+++++++++ WINDOW LOAD ++++++++++++++
+
+/* ============= Global Scripts ========*/
 jQuery(window).load(function(){
-	//fade the wrapper in after it loads
-	jQuery('#wrapper').animate({'opacity':1},1400);
-	
-	resizeSections();
-	
-	addTouchSupport();
-	
-	makeCycles();
 	
 	
 	falsePageHeight();
 	activeSection = jQuery('.active');
-	
+	//fade the wrapper in after it loads
+	jQuery('#wrapper').animate({'opacity':1},1400);
+	resizeSections();
+	addTouchSupport();
+	makeCycles();
+	//setActive();
 	
 	navTabActivate('#portfolio .nav-tab', '#portfolio-nav');
 	hhAccordion('#contact-accordion');//the contact form accordion
 	
-	
-	menuNav();//replacement for smooth scroll to handle the stacked sections
-	
-	
 		
 	imageTexturizer();
+
+	
+	jQuery('#menu-main-menu .menu-item a').click(function(e){
+		jQuery('.sidebar').slideUp('slow');
+		var linkTarget = jQuery(e.target).attr('href');
+		jQuery(linkTarget).find('.sidebar').slideDown('slow');
+	});
+	
+	
+			});
+
+/* +++++ Touch and Non-Touch Scripts ++++++ */
+
+jQuery(document).ready(function(){
+//if(jQuery('html').hasClass('touch')){//Scripts for touch-enabled devices
+
+jQuery(document).ready(function(){
 	whichSectionIsActive();
+iPadConsole = jQuery('.touch .ipad-console');
+//iPadConsole.html(jQuery('html').attr('class'));
+
+	//++++ Change Orientation ++++++
+	window.addEventListener('orientationchange', handleOrientation, false);
+	function handleOrientation() {
+	//resizeSections();
+	//falsePageHeight();
+	var windowWidth = jQuery(window).width();
+	var windowHeight = jQuery(window).height();
+	//console.log(windowWidth);
+	iPadConsole = jQuery('.touch .ipad-console');
+	
+	if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
+	    var viewportmeta = document.querySelector('meta[name="viewport"]');
+	    if (viewportmeta) {
+	        //viewportmeta.content = 'width='+windowWidth+', minimum-scale=.5, maximum-scale=1.0, initial-scale=.1';
+	//iPadConsole.html(viewportmeta.content);
+	}
+	}
+	if (orientation == 0) {
+	  //portraitMode, do your stuff here
+	}
+	else if (orientation == 90) {
+	  //landscapeMode
+	}
+	else if (orientation == -90) {
+	  //landscapeMode
+	}
+	else if (orientation == 180) {
+	  //portraitMode
+	}
+	else {
+	}
+	}
+});//end document ready
+//}//end of thouch device scripts
+
+//else { //scripts for non-touch devices
+
+
+
+	
+//+++++++++ WINDOW LOAD ++++++++++++++
+jQuery(window).load(function(){
+	//fade the wrapper in after it loads
+	//jQuery('#wrapper').animate({'opacity':1},1400);
+	
+	resizeSections();
+		whichSectionIsActive();
+	
+	menuNav();//replacement for smooth scroll to handle the stacked sections
+
+	
+	
+	
+	
+
 		
 });
 
 
-//++++++++++ WINDOW SCROLL ++++++++++
-jQuery(window).scroll(function(){
-	
-	scrollAction();
-	whichSectionIsActive();
-	
-	});
+
 	
 //++++++ WINDOW RESIZE +++++
 jQuery(window).resize(function(){
+	
 	resizeSections();
 	falsePageHeight();
+	
 });
 
-//++++ Change Orientation ++++++
-window.addEventListener('orientationchange', handleOrientation, false);
-function handleOrientation() {
-resizeSections();
-falsePageHeight();
-if (orientation == 0) {
-  //portraitMode, do your stuff here
-}
-else if (orientation == 90) {
-  //landscapeMode
-}
-else if (orientation == -90) {
-  //landscapeMode
-}
-else if (orientation == 180) {
-  //portraitMode
-}
-else {
-}
-}
+//}//End Non-Touch Device Scripts
+//++++++++++ WINDOW SCROLL ++++++++++
+jQuery(window).scroll(function(){
+	whichSectionIsActive();
+	setActive();
+	scrollAction();
+	whichSectionIsActive();
+	menuNav();
+	  
+	
+	});
+}); //end document ready
