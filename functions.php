@@ -55,16 +55,15 @@ function my_scripts_method() {
 	wp_enqueue_script('jquery-ui',
 		get_template_directory_uri() . '/js/jquery-ui-1.8.21.custom.min.js',
 		array('jquery') );
-		/*wp_enqueue_script('jquery_ui', "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", array('jquery'));	   
-	wp_enqueue_script('scrollspy',
-		get_template_directory_uri() . '/js/scrollspy.js',
-		array('jquery') ); 
-	
-	
+		/*wp_enqueue_script('jquery_ui', "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", array('jquery'));	  
+		
 	wp_enqueue_script('swipe',
 		get_template_directory_uri() . '/js/jquery.swipe.js',
 		array('jquery', 'jquery_ui') );	//swipe events
 		*/
+	wp_enqueue_script('scrollspy',
+		get_template_directory_uri() . '/js/scrollspy.js',
+		array('jquery') ); 	
 	wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/modernizr.js', array('jquery') );
 	wp_enqueue_script('touchPunch',
 		get_template_directory_uri() . '/js/jquery.touchPunch.min.js',

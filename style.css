@@ -65,7 +65,7 @@ time, mark, audio, video {
 	}	
 body{
  color:  #333;
- font-family: 'Muli', arial, sans-serif;
+ font-family: 'Muli', arial, sans-serif; 
  /* For Swipe Events on windows tablets */
  
  -ms-content-zooming: none;/* Disable pan/zoom */
@@ -73,6 +73,17 @@ body{
 #wrapper {
 	opacity: 0;
 
+}
+#fixed_bg {
+	display: block;
+	width:  100%;
+	height: 100%;
+	z-index: -1;
+	position: fixed;	
+	background-image: url(images/paper_bg2.png);
+	background-repeat: repeat;
+	background-position: top;
+	
 }
 .menu-main-menu-container {
 	position: fixed;
@@ -273,7 +284,6 @@ body{
 .section {
 padding-top: 150px;
 padding-bottom: 150px;
-position: fixed;
 background-image: url(images/section_bg.jpg);
 background-size: cover;
 clear: both;
