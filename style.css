@@ -119,6 +119,11 @@ body{
 	
 }
 #menu-main-menu .menu-item.active {
+	background: #f00;
+	display:block;
+	float: left;	
+}
+#menu-main-menu .menu-item.active {
 	font-size: 1.5em;
 }
 #menu-main-menu .menu-item a{
@@ -292,8 +297,9 @@ clear: both;
 -o-box-shadow: 0 4px 40px rgba(0,0,0,.5);
 box-shadow: 0 4px 40px rgba(0,0,0,.5);
 }
-.touch .section {
+.section {
 	position: relative;
+
 }
 #portfolio.section{
 
