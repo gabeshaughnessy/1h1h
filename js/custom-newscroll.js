@@ -472,18 +472,7 @@ function buildPageAnchors(slide){
 		    	}
 	    	});
 	
-		jQuery('#clients .content').cycle({ 
-		    fx:     'scrollHorz', 
-		    speed:  'slow', 
-		    timeout: 0, 
-		    pager:  '#clients-menu', 
-		     
-		    // callback fn that creates a thumbnail to use as pager anchor 
-		    pagerAnchorBuilder: function(idx, slide) { 
-		    return buildPageAnchors(slide); 
-		    } 
-		}
-		);
+		
 		jQuery('#case_studies .content').cycle({ 
 		    fx:     'scrollHorz', 
 		    speed:  'fast', 

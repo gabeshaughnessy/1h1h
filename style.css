@@ -306,6 +306,25 @@ box-shadow: 0 4px 40px rgba(0,0,0,.5);
 	padding: 0;
 }
 
+.row {
+	width:  100%;
+	clear:  both;
+	float:  left;
+}
+.column, .columns {
+	float:  left;
+	padding: 0 1%;
+}
+.three {
+	width: 31%;
+}
+.columns.first, .column.first {
+	padding-left:  0;
+}
+.columns.last, .column.last {
+	padding-right: 0;
+}
+
 /* z-index stacking for sections */
 
 #landing {
@@ -430,6 +449,14 @@ overflow: hidden;
 	margin-bottom: 7px;
 	cursor: pointer;
 }
+.section-title.center {
+	width: 100%;
+	border-bottom: 2px solid;
+	}
+.center {
+	text-align: center;
+	
+}
 .section-logo{
 		text-indent: -9999%;
 		display: block;
@@ -471,6 +498,10 @@ overflow: hidden;
 	overflow: hidden;
 	height: 90%;
 }
+.post-box.full-width {
+	float: left;
+	width:  100%;
+}
 .post-title {
 	font-family: 'ArialBlack';
 }
@@ -492,6 +523,7 @@ overflow: hidden;
 	margin: 20px 0;
 	padding: 20px 0;
 	text-align: center;
+	float: left;
 }
 #menu-main-menu .hathand {
 	padding: 0 5px;
