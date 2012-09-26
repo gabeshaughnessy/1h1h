@@ -313,10 +313,13 @@ box-shadow: 0 4px 40px rgba(0,0,0,.5);
 }
 .column, .columns {
 	float:  left;
-	padding: 0 1%;
+	padding: 0 1% 0 0;
 }
 .three {
-	width: 31%;
+	width: 32.66%;
+}
+.four {
+	width: 24.33%;
 }
 .columns.first, .column.first {
 	padding-left:  0;
@@ -467,11 +470,11 @@ overflow: hidden;
 		background-position: top center;
 		background-size: contain
 }
-.section-menu {
+.section-menu, .filter-menu {
 	margin-top: 10px;
 	list-style: none;
 }
-.section-menu li a{
+.section-menu li a, .filter-menu li a{
 	font-family: "Muli", sans-serif;
 	font-size: 1.1em;
 	text-transform: uppercase;
@@ -479,14 +482,15 @@ overflow: hidden;
 	color: #555;
 	font-weight: 300;
 }
+
 .section-menu li.hidden {
 	display: none;
 }
-.section-menu li.activeSlide a{
+.section-menu li.activeSlide a, .filter-menu li.activeSlide a{
 	color:  #333;
 	text-shadow: 0 0 2px #333;
 }
-.section-menu li.activeSlide a:after{
+.section-menu li.activeSlide a:after, .filter-menu li.activeSlide a:after{
 	content: " > ";
 	display: inline;
 	font-weight: bold;
@@ -504,6 +508,10 @@ overflow: hidden;
 }
 .post-title {
 	font-family: 'ArialBlack';
+}
+.client .post-title {
+	font-family: 'Muli', sans-serif;
+	
 }
 #landing .post-box, #contact .post-box {
 	width: 100%;
@@ -602,3 +610,15 @@ border: 2px solid #333;
 outline-width: 0;
 outline-color: transparent; 
 background:  transparent url(images/hatches50px.png) repeat; }
+
+/* isotope styles */
+.isotope-item {
+	-webkit-transition: all .5s ease-in;
+	margin: 6px;
+	}
+.artist {
+	opacity: 0;
+}
+.isotope {
+	-webkit-transition: all .5s ease-in;
+}

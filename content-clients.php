@@ -19,7 +19,7 @@
 							if ( $custom_query->have_posts() ) : ?>
 				
 							
-								<div class="row center">
+								<div class="row ">
 								<div class="three columns first">
 								<?php /* Start the Loop */ 
 								$i = 1;

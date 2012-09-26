@@ -55,6 +55,9 @@ function my_scripts_method() {
 	wp_enqueue_script('jquery-ui',
 		get_template_directory_uri() . '/js/jquery-ui-1.8.21.custom.min.js',
 		array('jquery') );
+	wp_enqueue_script('isotope',
+		get_template_directory_uri() . '/js/isotope.min.js',
+		array('jquery') );
 		/*wp_enqueue_script('jquery_ui', "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", array('jquery'));	  
 		
 	wp_enqueue_script('swipe',
@@ -283,5 +286,46 @@ function hh_section_page_loop($hh_pageID){ ?>
 		
 <?php }
 
+//prints out a list of taxonomy terms for use in front-end filters, among other things
+function print_the_terms($taxonomy, $separator){
+global $terms;
+global $post;
+$terms = get_the_terms($post->ID, $taxonomy); 
+if ( $terms && ! is_wp_error( $terms ) ) : 
+	
+	foreach ( $terms as $term ) {
+	if(!empty($term)){
+	
+		$tax_items[] = $term->slug;
+	}
+	}
+						
+	$the_terms = join($tax_items, $separator);
+	return $the_terms;
+	endif;
+}
+
+function isotope_filter_menu($taxonomy){
+global $terms;
+global $post;
+$terms = get_terms($taxonomy); 
+if ( $terms && ! is_wp_error( $terms ) ) { 
+	
+	foreach ( $terms as $term ) {
+		if( $term->count != ''){
+		$tax_items[] = "<li><a href='#' class='tiny button secondary' data-filter='.".$term->slug."'>".$term->name." </a></li>";
+		
+		$the_terms = join($tax_items, ' ');
+		}
+	}
+	$tax_items[] = "<li><a href='#' class='tiny button' data-filter='*'>show all</a></li>";
+	$the_terms = join($tax_items, ' ');
+	return $the_terms;
+}
+else {
+return "no terms";
+}
+
+}
 
  ?>

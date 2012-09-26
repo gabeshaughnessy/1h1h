@@ -1,4 +1,4 @@
-//+++++++ Globals ++++++++
+//GLOBALS
 var pageHeight; //add all the sections to get the page height
 var scrollDistance = 0; // how far have they scrolled down the page?
 var actualHeight = 0; // how big is a section?
@@ -41,7 +41,7 @@ function resizeSections(){
 //End resizeSections
 function imageTexturizer(){//puts a texture over all the images
 
-	jQuery('img:not(#portfolio img)').each(function(){
+	jQuery('img:not(#portfolio img, img.no-texture)').each(function(){
 		jQuery(this).wrap('<div class="image-wrapper">');
 		jQuery(this).parent().css({'background-image': 'url('+templateDir + '/images/paper_bg2.png), url('+ jQuery(this).attr('src')+')', 'background-repeat': 'repeat, no-repeat', 'background-size':'1400px 752px, contain', 'background-position':'center, center'});
 		
@@ -85,6 +85,10 @@ function whichSectionIsActive(){
 		jQuery('#portfolio .nav-tab').hide();
 		jQuery('.menu-main-menu-container').slideDown('slow');
 		jQuery('#portfolio-nav').slideUp('fast');
+		/* Isotope Activation */
+			
+		
+	
 	}
 	else if (jQuery('#clients').hasClass('active')) {
 		jQuery('#portfolio .nav-tab').hide();
@@ -484,18 +488,7 @@ function buildPageAnchors(slide){
 		   return buildPageAnchors(slide);	    } 
 		}
 		);
-		jQuery('#artists .content').cycle({ 
-		    fx:     'scrollHorz', 
-		    speed:  'fast', 
-		    timeout: 0, 
-		    pager:  '#artists-menu', 
-		     
-		    // callback fn that creates a thumbnail to use as pager anchor 
-		    pagerAnchorBuilder: function(idx, slide) { 
-		   return buildPageAnchors(slide); 
-		    } 
-		}
-		);
+		
 		
 		//jQuery('.menu-main-menu-container').hide();
 		jQuery('#portfolio-nav').hide();
@@ -649,6 +642,8 @@ jQuery(window).load(function(){
 		jQuery('.sidebar').slideUp('slow');
 		var linkTarget = jQuery(e.target).attr('href');
 		jQuery(linkTarget).find('.sidebar').slideDown('slow');
+		
+		
 	});
 	
 	
@@ -733,9 +728,20 @@ jQuery(window).load(function(){
 	    jQuery('#portfolio-nav').slideUp('fast');
 	    jQuery('#portfolio .nav-tab').hide();
 	   // navTabActivate('#portfolio .nav-tab', '#portfolio-nav');
-	  } else {
+	   var $container = jQuery('.filter-target');
+	   if($container.length > 0){
+	   	$container.isotope({
+	   	  filter: '.artist'
+	   	});
+	   	$container.find('.isotope-item').animate({'opacity':1}, 500);		
+	   	
+	   }
+	   
+	   
+	  	  } else {
 	  jQuery('#artists').removeClass('active');
 	    // element has gone out of viewport
+	   
 	   
 	  }
 	});
@@ -781,7 +787,16 @@ jQuery(window).load(function(){
 
 /* +++++ Touch and Non-Touch Scripts ++++++ */
 
-jQuery(document).ready(function(){
+jQuery(document).ready(function($){
+
+var $container = jQuery('.filter-target');
+if($container.length > 0){
+	$container.isotope({
+	  filter: 'artist'
+	});
+	$container.find('.isotope-item').animate({'opacity':1}, 500);		
+	
+}
 
 
 if(jQuery('html').hasClass('touch')){//Scripts for touch-enabled devices
@@ -820,8 +835,27 @@ iPadConsole = jQuery('.touch .ipad-console');
 	else {
 	}
 	}
+	
+jQuery(window).load(function(){ //for touch devices
+
+	
+	
+	var $container = jQuery('.filter-target');
+	// initialize isotope
+	if($container.length > 0){
+	$container.isotope({
+	  // options... http://isotope.metafizzy.co/docs/options.html
+	  filter: '.artist' 
+	});
+	}
+	$container.find('.isotope-item').animate(500);
+
+		
+});
+	
 }//end of thouch device scripts
 
+/* ---- NON-TOUCH ----- */
 else { //scripts for non-touch devices
 
 jQuery('#menu-main-menu .menu-item a').click(function(e){
@@ -829,7 +863,7 @@ jQuery('#menu-main-menu .menu-item a').click(function(e){
 	var sectionID = jQuery(this).attr('href');
 	activeSection = jQuery(sectionID);
 
-	console.log('menu activated: ', activeSection);
+	//console.log('menu activated: ', activeSection);
 	jQuery('.section').each(function(){
 		jQuery(this).removeClass('active');
 	});
@@ -839,7 +873,17 @@ jQuery('#menu-main-menu .menu-item a').click(function(e){
 		//console.log('not active: ', jQuery('.section:not(.active)'));
 	jQuery('.active').css({'z-index':100}).animate({'top': 0 }, {'duration':2000, 'easing': 'easeInOutExpo', 'complete': function(){//do this when the animation completes
 			
-			
+				
+			var $container = jQuery('.filter-target');
+			// initialize isotope
+			if($container.length > 0){
+			$container.isotope({
+			  // options... http://isotope.metafizzy.co/docs/options.html
+			  filter: '.artist'
+			});
+			}
+			$container.find('.isotope-item').animate(500);
+						
 			}//end of the animation complete function	
 	});
 		jQuery('.section:not(.active)').each(function(index){
@@ -865,7 +909,15 @@ jQuery(window).load(function(){
 
 	
 	
-	
+	var $container = jQuery('.filter-target');
+	// initialize isotope
+	if($container.length > 0){
+	$container.isotope({
+	  // options... http://isotope.metafizzy.co/docs/options.html
+	  filter: '.artist' 
+	});
+	}
+	$container.find('.isotope-item').animate(500);
 
 		
 });
@@ -893,4 +945,26 @@ jQuery(window).scroll(function(){
 	
 	});
 	}
+/* isotope activate */
+
+
+//ISTOPE MENU
+// filter items when filter link is clicked
+$('.filter-menu a').click(function(){
+$('.filter-menu li').removeClass('activeSlide');
+  var selector = $(this).attr('data-filter');
+  jQuery(this).parent('li').toggleClass('activeSlide');
+  var $container = jQuery('.filter-target');
+  // initialize isotope
+  if($container.length > 0){
+  $container.isotope({
+    // options... http://isotope.metafizzy.co/docs/options.html
+    filter: selector 
+  });
+  }
+  $container.find('.isotope-item').animate(500);	
+  return false;
+});
+//End isotope activation scripts
+
 }); //end document ready
