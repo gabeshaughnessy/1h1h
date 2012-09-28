@@ -9,6 +9,6 @@
 </div> <!-- // wrapper -->
 
 <?php wp_footer(); ?>
-
+<?php get_template_part('modal'); ?>
 </body>
 </html>

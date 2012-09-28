@@ -37,7 +37,8 @@
 				 				$id = get_the_ID();
 				 				
 				 				?>
-				 				<div id="post_<?php echo $id ?>" class="artist profile listing <?php echo print_the_terms('hh_classification', ' '); ?>">
+				 				<div id="post_<?php echo $id ?>" class="artist profile listing <?php echo print_the_terms('hh_classification', ' '); ?>" data-target="<?php echo the_permalink(); ?>">
+				 			
 				 				<?php echo get_the_post_thumbnail($id, 'isotope-grid', array('class' => 'no-texture')); ?>
 				 					</div><!--end of the post -->
 				 				<?php endwhile; ?>

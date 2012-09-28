@@ -1,0 +1,47 @@
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+.reveal-modal {
+	z-index:  1000;
+}
+
+.reveal-modal-bg {
+	z-index: 999;;
+}
+
+#modal-content .attachment-post-thumbnail {
+	float: left;
+	margin-right:  10px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: 'Fredericka the Great' serif;
+	font-weight: 100;
+}
+.reveal-modal .close-reveal-modal {
+	font-family: 'Fredericka the Great' serif;
+	
+}
+/* -----------------------------------------
+   Page Name 1
+----------------------------------------- */
+
+
+
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+
+

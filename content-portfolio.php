@@ -27,7 +27,7 @@
 						<?php /* Start the Loop */ ?>
 						
 						<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
-						<div class="portfolio-entry post" id="portfolio_post_<?php echo get_the_ID(); ?>">
+						<div class="portfolio-entry post" data-target="<?php the_permalink(); ?>" id="portfolio_post_<?php echo get_the_ID(); ?>">
 						<?php hh_get_portfolio_backgrounds("full-bg"); ?>
 						<!--<h2 class="portfolio-title"><?php the_title(); ?></h2>-->
 						</div><!-- end post -->

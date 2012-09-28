@@ -71,6 +71,7 @@ function my_scripts_method() {
 	wp_enqueue_script('touch-punch',
 		get_template_directory_uri() . '/js/jquery.touchPunch.min.js',
 		array('jquery') );	
+
 	wp_enqueue_script('touchwipe',get_template_directory_uri() . '/js/jquery.touchwipe.min.js',array('jquery'));	
 	//mousewheel detection
 	wp_enqueue_script('mousewheel',
@@ -89,6 +90,15 @@ function my_scripts_method() {
 		get_template_directory_uri() . '/js/custom-newscroll.js',
 		array('jquery', 'mousewheel') );
 		
+	//FOUNDATION REVEAL
+	wp_enqueue_script('reveal', get_template_directory_uri() . '/js/jquery.foundation.reveal.js',
+		array('jquery') );
+	//enqueue styles for foundation reveal
+	wp_register_style('foundation-reveal', get_bloginfo('stylesheet_directory').'/foundation.css');
+	wp_register_style('foundation-app', get_bloginfo('stylesheet_directory').'/app.css');
+	wp_enqueue_style('foundation-reveal');
+	wp_enqueue_style('foundation-app');
+	
 		         
 }    
  

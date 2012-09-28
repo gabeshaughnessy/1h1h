@@ -967,4 +967,41 @@ $('.filter-menu li').removeClass('activeSlide');
 });
 //End isotope activation scripts
 
+/* Modal Activations */
+
+    jQuery('.artist').click(function() {
+    var target = jQuery(this);
+    var targetID = target.attr('data-target');
+    var modal = jQuery('#modal');
+   //load modal template into modal content with ajax
+	var modalContent =  $.ajax({
+	    url: targetID,
+	    context: document.body
+	  }).done(function() { 
+	    //$(this).addClass("done");
+	    //console.log("modal: ", modalContent.responseText);
+	    modal.html(modalContent.responseText);
+	     modal.reveal();
+	  }); 
+
+    });
+
+   jQuery('#portfolio-wrapper').click(function() {
+    var target = jQuery(this).find('.portfolio-entry:visible');
+    var targetID = target.attr('data-target');
+    var modal = jQuery('#modal');
+   //load modal template into modal content with ajax
+	var modalContent =  $.ajax({
+	    url: targetID,
+	    context: document.body
+	  }).done(function() { 
+	    //$(this).addClass("done");
+	    //console.log("modal: ", modalContent.responseText);
+	    modal.html(modalContent.responseText);
+	    modal.reveal();
+	  }); 
+
+    });
+
+/* End modal activations */
 }); //end document ready
