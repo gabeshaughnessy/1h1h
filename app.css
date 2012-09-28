@@ -28,10 +28,15 @@
 h1,h2,h3,h4,h5,h6 {
 	font-family: 'Fredericka the Great' serif;
 	font-weight: 100;
+	font-size: 1.5em;
 }
 .reveal-modal .close-reveal-modal {
 	font-family: 'Fredericka the Great' serif;
 	
+}
+
+p {
+	font-family: 'Muli', arial, sans-serif;
 }
 /* -----------------------------------------
    Page Name 1
