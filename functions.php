@@ -87,7 +87,7 @@ function my_scripts_method() {
 		get_template_directory_uri() . '/js/inview.js',
 		array('jquery'));
 	wp_enqueue_script('custom_scripts',
-		get_template_directory_uri() . '/js/custom-newscroll.js',
+		get_template_directory_uri() . '/js/custom-scripts.js',
 		array('jquery', 'mousewheel') );
 		
 	//FOUNDATION REVEAL
