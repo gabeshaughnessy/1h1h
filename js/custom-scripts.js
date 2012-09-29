@@ -16,6 +16,20 @@ function navTabActivate(tab, target){ //displays the portfolio navigation tab
 	});
 }
 
+function centerElement(element){
+	var windowWidth = jQuery(window).width();
+	var windowHeight = jQuery(window).height();
+	console.log(windowHeight);
+	var elementWidth = element.width();
+	var elementHeight = element.height();
+	var elementOffset = new Object();
+	elementOffset.x = windowWidth/2 - elementWidth/2;
+	elementOffset.y = windowHeight/2;
+	element.css({
+	'left' : elementOffset.x,
+	'top' : elementOffset.y
+	});
+}
 function falsePageHeight(){ //make the page the total height of all the sections with fixed positions
 	pageHeight = 0;
 	
@@ -219,55 +233,7 @@ function moveMenuIndicator(){
 	
 	
 }//end moveMenuIndicator function
-
-
-// ++++++ Scroll Event Helper Function - used in touch events too!
-function scrollAction(){
-
-	scrollDistance = jQuery(window).scrollTop();
-	activeSection = jQuery('.active');
-	activeSidebar = jQuery('.active-sidebar');
-	if(jQuery('#landing').hasClass('active') ){
-		flipDistance = parseInt(activeSection.attr('data-offset'))-scrollDistance;
-		
-	}
 	
-	else{
-		flipDistance = parseInt(activeSection.attr('data-offset'))-scrollDistance + scrollPadding;
-	}
-	
-	
-	
-	jQuery('.section').each(function(index){
-	jQuery(this).css({'z-index':jQuery('.section').length-index});
-	});
-	
-	activeSection.css({'top':flipDistance});
-	
-	jQuery('.sidebar').css({'position': 'relative', 'top': 'auto'});
-	activeSidebar.css({'position':'fixed', 'top': 150});
-				
-	var activeZ = jQuery('.active').css('z-index');
-	
-	jQuery('.section:not(.active)').each(function(index){
-	
-	if(parseInt(jQuery(this).css('z-index')) > parseInt(activeZ)){
-		jQuery(this).css({'top': -10000 });
-		jQuery(this).find('.sidebar').slideUp('fast');
-	}
-	else if(parseInt(jQuery(this).css('z-index')) == parseInt(activeZ)){
-	}
-	else {
-	jQuery(this).css({'top': 0 });
-	jQuery(this).find('.sidebar').slideDown('fast');
-	}
-				});
-	
-	setActive();
-	whichSectionIsActive();
-	
-}//end scrollAction();
-
 
 /* Accordions */
 function hhAccordion(target){
@@ -421,6 +387,9 @@ jQuery(window).load(function(){
 	navTabActivate('#portfolio .nav-tab', '#portfolio-nav');
 	hhAccordion('#contact-accordion');//the contact form accordion
 	imageTexturizer();
+	whichSectionIsActive();
+	
+	centerElement(jQuery('#portfolio-control'));
 	
 	jQuery('.menu-main-menu-container').slideUp();
 	
@@ -569,7 +538,7 @@ jQuery(window).load(function(){
 /* +++++ Touch and Non-Touch Scripts ++++++ */
 
 jQuery(document).ready(function($){
-
+$.localScroll();
 var $container = jQuery('.filter-target');
 if($container.length > 0){
 	$container.isotope({
