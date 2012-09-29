@@ -20,7 +20,7 @@
 	z-index: 999;;
 }
 
-#modal-content .attachment-post-thumbnail {
+.reveal-modal .left.wp-post-image {
 	float: left;
 	margin-right:  10px;
 }
@@ -38,15 +38,51 @@ h1,h2,h3,h4,h5,h6 {
 p {
 	font-family: 'Muli', arial, sans-serif;
 }
-/* -----------------------------------------
-   Page Name 1
------------------------------------------ */
 
+.modal-header {
+	width: 100%;
+	border-bottom: 2px solid #333;
+	clear: both;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+	text-align: center;
+}
 
+.modal-footer {
+	width: 100%;
+	border-top: 2px solid #333;
+	clear: both;
+	padding-top: 5px;
+	margin-top: 10px;
+	float: left;
+}
+.reveal-modal .hathand.hand a{
+		margin:  0 auto;
+}
+.reveal-modal .modal-inner {
+	width:  100%;
+	clear: both;
+	line-height: 22px;
+}
+.reveal-modal .modal-link {
+	margin-top: 10px;
+}
 
+.modal-link a {
+	text-decoration: none;
+	font-family: 'Parisienne', cursive, sans-serif;
+	color: #888;
+	font-size: 1.2em;
+}
 
-/* -----------------------------------------
-   Page Name 2
------------------------------------------ */
+/* arrows */
 
+.left.arrow {
+	background: url(images/left-arrow-grey.png) no-repeat left 2px;
+	padding-left:  15px;
+}
+.right.arrow {
+	background: url(images/right-arrow-grey.png) no-repeat right 2px;
+	padding-right:  15px;
+}
 

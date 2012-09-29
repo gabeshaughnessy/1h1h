@@ -1,4 +1,4 @@
-<div id="modal-content">
+
 <?php if ( have_posts() ) : ?>
 
 			
@@ -6,13 +6,25 @@
 				<?php /* Start the Loop */ ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 				
+				<div class="modal-header">
 				<h2 id="modal-title"><?php the_title(); ?></h2>
-				<div class="left">
-				<?php the_post_thumbnail(); ?>
+				</div>
+				
+				<div class="left modal-inner">
+				<?php 
+				$image_attr = array(
+							
+							'class'	=> "left",
+							
+						);
+				the_post_thumbnail('post-thumbnail', $image_attr); ?>
 				<?php the_content(); ?>
 				</div>
 				
-				<a class="close-reveal-modal">&#215;</a>
+				<div class="modal-footer">
+					<div class="navigation"><p class="modal-link three columns first"><span class="left arrow"><?php previous_post_link('%link', 'Previous Profile'); ?></span></p><div class="hathand hand three columns"><a href=""></a></div><p class="modal-link three columns last"><span class="right arrow"><?php next_post_link('%link', 'Next Profile'); ?></span></p>
+					</div>
+				</div>
 				
 
 				<?php endwhile; 
@@ -24,4 +36,4 @@
 			<?php else : ?>
 			<p>Sorry, Nothing Here</p>
 <?php endif; ?>
-		  </div>
+

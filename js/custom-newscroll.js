@@ -976,12 +976,14 @@ $('.filter-menu li').removeClass('activeSlide');
    //load modal template into modal content with ajax
 	var modalContent =  $.ajax({
 	    url: targetID,
+	    
 	    context: document.body
 	  }).done(function() { 
 	    //$(this).addClass("done");
 	    //console.log("modal: ", modalContent.responseText);
-	    modal.html(modalContent.responseText);
+	    modal.find('#modal-content').html(modalContent.responseText);
 	     modal.reveal();
+	     activateLinks();
 	  }); 
 
     });
@@ -997,11 +999,34 @@ $('.filter-menu li').removeClass('activeSlide');
 	  }).done(function() { 
 	    //$(this).addClass("done");
 	    //console.log("modal: ", modalContent.responseText);
-	    modal.html(modalContent.responseText);
+	   modal.find('#modal-content').html(modalContent.responseText);
 	    modal.reveal();
-	  }); 
-
+	    activateLinks();
+	   	  }); 
     });
-
+   
+ function activateLinks(){
+	 jQuery('.modal-link a').click(function(e) {
+	        
+	         var target = jQuery(this);
+	         var targetID = target.attr('href');
+	         var modal = jQuery('#modal');
+	        //load modal template into modal content with ajax
+	     	var modalContent =  $.ajax({
+	     	    url: targetID,
+	     	    context: document.body
+	     	  }).done(function() { 
+	     	    //$(this).addClass("done");
+	     	   // console.log("modal: ", modalContent.responseText);
+	     	    modal.find('#modal-content').html(modalContent.responseText);
+	     	    modal.reveal();
+	     	    activateLinks();
+	     	  }); 
+	     	  
+	 	     e.preventDefault();
+	         });
+	 
+ }  
+    
 /* End modal activations */
 }); //end document ready
