@@ -11,7 +11,13 @@
 				</div>
 				
 				<div class="left modal-inner">
-				<?php the_post_thumbnail(); ?>
+				<?php 
+				$image_attr = array(
+							
+							'class'	=> "left",
+							
+						);
+				the_post_thumbnail('post-thumbnail', $image_attr); ?>
 				<?php the_content(); ?>
 				</div>
 				
