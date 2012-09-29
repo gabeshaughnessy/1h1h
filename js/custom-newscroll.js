@@ -1020,6 +1020,12 @@ $('.filter-menu li').removeClass('activeSlide');
 	     	   // console.log("modal: ", modalContent.responseText);
 	     	    modal.find('#modal-content').html(modalContent.responseText);
 	     	    modal.reveal();
+	     	    if(jQuery(target).attr('rel') == 'prev'){
+	     	    jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
+	     	    }
+	     	   else if(jQuery(target).attr('rel') == 'next'){
+	     	    jQuery('#portfolio-wrapper').cycle('prev');//this is reversed to match wp post order
+	     	    }
 	     	    activateLinks();
 	     	  }); 
 	     	  
