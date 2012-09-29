@@ -748,7 +748,7 @@ $('.filter-menu li').removeClass('activeSlide');
 		          var  animationDirection = '-150%';
 		      }
 		      
-		        modal.animate({'margin-left':animationDirection}, 300, 'easeInQuad', function(){
+		       modal.animate({'margin-left':animationDirection}, 300, 'easeInQuad', function(){
 			       var modalContent =  $.ajax({
 		     	    url: targetID,
 		     	    context: document.body
@@ -762,9 +762,9 @@ $('.filter-menu li').removeClass('activeSlide');
 		     	    jQuery('#portfolio-wrapper').cycle('prev');//this is reversed to match wp post order
 		     	    }
 		     	    activateLinks();
-		     	     modal.animate({'margin-left':modalPosition}, 300, 'easeOutQuad');
+		     	    
 		     	  }); 
-		     
+		      modal.animate({'margin-left':modalPosition}, 300, 'easeOutQuad');
 		     	  });
      	  }
      	  else { //touch devices dont animate
