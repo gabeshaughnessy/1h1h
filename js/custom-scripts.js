@@ -19,7 +19,6 @@ function navTabActivate(tab, target){ //displays the portfolio navigation tab
 function centerElement(element){
 	var windowWidth = jQuery(window).width();
 	var windowHeight = jQuery(window).height();
-	console.log(windowHeight);
 	var elementWidth = element.width();
 	var elementHeight = element.height();
 	var elementOffset = new Object();
@@ -69,6 +68,21 @@ function imageTexturizer(){//puts a texture over all the images
 	});
 	
 }//end imageTexturizer
+
+//TOUCHWIPE EVENT HANDLER
+function makeSwipes(targetElement){
+jQuery(targetElement).touchwipe({//touch settings
+     wipeLeft: function() { 
+     jQuery(targetElement).cycle('next'); 
+      },
+     wipeRight: function() {
+      jQuery(targetElement).cycle('prev'); 
+       },
+     min_move_x: 30,
+     min_move_y: 30,
+     preventDefaultEvents: false
+});
+}
 
 function whichSectionIsActive(){
 
@@ -269,17 +283,6 @@ function gestureChange(e) {
 function addTouchSupport(){
 document.body.addEventListener("gesturechange", gestureChange, false);
 
-
-	//++++ Touch EVENTS +++++
-	jQuery('.section').touchwipe({//touch settings
-	     wipeLeft: function() {  },
-	     wipeRight: function() {  },
-	     wipeUp: function(){scrollAction()},
-	     wipeDown: function(){scrollAction()},
-	     min_move_x: 10,
-	     min_move_y: 10,
-	     preventDefaultEvents: false
-	});
 }
 
 function makeCycles(){
@@ -538,6 +541,78 @@ jQuery(window).load(function(){
 /* +++++ Touch and Non-Touch Scripts ++++++ */
 
 jQuery(document).ready(function($){
+
+//KEYBOARD EVENTS
+
+$('body').keydown(function(e){
+	console.log('keycode: ',e.keyCode); //uncomment to see keycodes
+	var targetSection;
+	var currentSection = jQuery('.section.active');
+	
+	if(e.keyCode == 38 ){//up arrow(38) is pressed
+		
+		jQuery('.close-reveal-modal').click();//close the modal
+		targetSection = currentSection.prev();
+		$.scrollTo(targetSection, 500);
+		
+		e.preventDefault();
+	}
+	else if(e.keyCode == 40 ){//down(40) arrow is pressed
+		
+		
+		jQuery('.close-reveal-modal').click();//close the modal	
+		targetSection = currentSection.next();
+		$.scrollTo(targetSection, 500);
+		
+		e.preventDefault();
+	}
+	if(e.keyCode == 37){//left(37) arrow is pressed
+		if(currentSection.attr('id') == 'portfolio'){
+			
+			//modal changes too
+			if(jQuery('#modal').hasClass('open')){
+				jQuery('#modal').find('.modal-link a[rel="next"]').click();
+			}//end open modal	
+			else {
+				jQuery('#portfolio-wrapper').cycle('prev'); //this is reversed to match wp post order
+			} 
+		}
+		else if(currentSection.attr('id') == 'case_studies'){
+			jQuery('#case_studies-posts .content').cycle('prev'); //this is reversed to match wp post order
+		}
+		else if(currentSection.attr('id') == 'services'){
+			jQuery('#services-posts .content').cycle('prev'); //this is reversed to match wp post order
+		}
+		e.preventDefault();
+	}
+	else if(e.keyCode == 39){//right(39) arrow is pressed
+		if(currentSection.attr('id') == 'portfolio'){
+			
+			//modal changes too
+			if(jQuery('#modal').hasClass('open')){
+				jQuery('#modal').find('.modal-link a[rel="prev"]').click();
+			}//end open modal	
+			else {
+				jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
+			}
+			
+		}
+		else if(currentSection.attr('id') == 'case_studies'){
+			jQuery('#case_studies-posts .content').cycle('next'); //this is reversed to match wp post order
+		}
+		else if(currentSection.attr('id') == 'services'){
+			jQuery('#services-posts .content').cycle('next'); //this is reversed to match wp post order
+		}
+		e.preventDefault();
+	}
+else if (e.keyCode == 13) {//return(13) key was pressed
+	if(currentSection.attr('id') == 'portfolio' && !jQuery('#modal').hasClass('open')){ 
+		jQuery('#portfolio-wrapper').click();
+	}
+}
+});//end keydown events
+//end KEYBOARD EVENTS
+
 $.localScroll();
 var $container = jQuery('.filter-target');
 if($container.length > 0){
@@ -548,9 +623,13 @@ if($container.length > 0){
 	
 }
 
-
+//++++ Touch EVENTS +++++
 if(jQuery('html').hasClass('touch')){//Scripts for touch-enabled devices
 
+
+makeSwipes('#case_studies-posts .content');
+makeSwipes('#services-posts .content');
+makeSwipes('#portfolio-wrapper');
 	//++++ Change Orientation ++++++
 	window.addEventListener('orientationchange', handleOrientation, false);
 	function handleOrientation() {
@@ -657,23 +736,55 @@ $('.filter-menu li').removeClass('activeSlide');
 	        
 	         var target = jQuery(this);
 	         var targetID = target.attr('href');
-	         var modal = jQuery('#modal');
-	        //load modal template into modal content with ajax
-	     	var modalContent =  $.ajax({
-	     	    url: targetID,
-	     	    context: document.body
-	     	  }).done(function() { 
-	     	    modal.find('#modal-content').html(modalContent.responseText);
-	     	    modal.reveal();
-	     	    if(jQuery(target).attr('rel') == 'prev'){
-	     	    jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
-	     	    }
-	     	   else if(jQuery(target).attr('rel') == 'next'){
-	     	    jQuery('#portfolio-wrapper').cycle('prev');//this is reversed to match wp post order
-	     	    }
-	     	    activateLinks();
-	     	  }); 
-	     	  
+	         var modal = jQuery('#modal');	      
+	    
+	    if(jQuery('html').hasClass('no-touch')){//Scripts for touch-enabled devices  
+		   
+		    var  modalPosition = modal.css('margin-left');
+		      if(target.attr('rel') == 'prev'){
+			      var  animationDirection = '150%';
+		      }
+		      else if(target.attr('rel') == 'next'){
+		          var  animationDirection = '-150%';
+		      }
+		      
+		        modal.animate({'margin-left':animationDirection}, 300, 'easeInQuad', function(){
+			       var modalContent =  $.ajax({
+		     	    url: targetID,
+		     	    context: document.body
+		     	  }).done(function() { 
+		     	    modal.find('#modal-content').html(modalContent.responseText);
+		     	    modal.reveal();
+		     	    if(jQuery(target).attr('rel') == 'prev'){
+		     	    jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
+		     	    }
+		     	   else if(jQuery(target).attr('rel') == 'next'){
+		     	    jQuery('#portfolio-wrapper').cycle('prev');//this is reversed to match wp post order
+		     	    }
+		     	    activateLinks();
+		     	     modal.animate({'margin-left':modalPosition}, 300, 'easeOutQuad');
+		     	  }); 
+		     
+		     	  });
+     	  }
+     	  else { //touch devices dont animate
+     	  var modalContent =  $.ajax({
+     	    url: targetID,
+     	    context: document.body
+     	  }).done(function() { 
+     	    modal.find('#modal-content').html(modalContent.responseText);
+     	    modal.reveal();
+     	    if(jQuery(target).attr('rel') == 'prev'){
+     	    jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
+     	    }
+     	   else if(jQuery(target).attr('rel') == 'next'){
+     	    jQuery('#portfolio-wrapper').cycle('prev');//this is reversed to match wp post order
+     	    }
+     	    activateLinks();
+     	  }); 
+     	  
+     	  
+     	  }
 	 	     e.preventDefault();
 	         });
 	 

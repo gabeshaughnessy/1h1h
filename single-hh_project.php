@@ -22,7 +22,7 @@
 				</div>
 				
 				<div class="modal-footer">
-				<div class="navigation"><p class="modal-link three columns first"><span class="left arrow"><?php previous_post_link('%link', 'Previous Project'); ?></span></p><div class="hathand hand three columns"><a href=""></a></div><p class="modal-link three columns last"><span class="right arrow"><?php next_post_link('%link', 'Next Project'); ?></p></span></div>
+				<div class="navigation"><p class="modal-link three columns first"><span class="left arrow"><?php next_post_link('%link', 'Previous Project'); ?></span></p><div class="hathand hand three columns"><a href=""></a></div><p class="modal-link three columns last"><span class="right arrow"><?php previous_post_link('%link', 'Next Project'); ?></span></p></div>
 				</div>
 				
 				
