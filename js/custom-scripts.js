@@ -8,6 +8,21 @@ var scrollPadding = 0; //give a little resistance/delay when scrolling past a se
 
 //+++++++++ Helper Functions +++++++++++
 
+/* detect browser */
+
+function getBrowser (){
+if(jQuery.uaMatch(navigator.userAgent).browser == 'webkit'){
+var userAgent = navigator.userAgent.toLowerCase();
+if ( userAgent.indexOf("chrome") === -1 ) { 
+return 'safari';
+}
+else {
+return jQuery.uaMatch(navigator.userAgent).browser;
+}
+}
+}
+/* end browser test */
+
 function navTabActivate(tab, target){ //displays the portfolio navigation tab
 	jQuery(tab).click(function(e){
 	jQuery(target).slideDown('slow');
@@ -568,20 +583,26 @@ $('body').keydown(function(e){
 	}
 	if(e.keyCode == 37){//left(37) arrow is pressed
 		if(currentSection.attr('id') == 'portfolio'){
-			
 			//modal changes too
 			if(jQuery('#modal').hasClass('open')){
 				jQuery('#modal').find('.modal-link a[rel="next"]').click();
 			}//end open modal	
+			
 			else {
 				jQuery('#portfolio-wrapper').cycle('prev'); //this is reversed to match wp post order
 			} 
 		}
+		
 		else if(currentSection.attr('id') == 'case_studies'){
 			jQuery('#case_studies-posts .content').cycle('prev'); //this is reversed to match wp post order
 		}
 		else if(currentSection.attr('id') == 'services'){
 			jQuery('#services-posts .content').cycle('prev'); //this is reversed to match wp post order
+		}
+		else if(currentSection.attr('id') == 'artists'){
+			if(jQuery('#modal').hasClass('open')){
+				jQuery('#modal').find('.modal-link a[rel="next"]').click();
+			}//end open modal	
 		}
 		e.preventDefault();
 	}
@@ -602,6 +623,11 @@ $('body').keydown(function(e){
 		}
 		else if(currentSection.attr('id') == 'services'){
 			jQuery('#services-posts .content').cycle('next'); //this is reversed to match wp post order
+		}
+		else if(currentSection.attr('id') == 'artists'){
+			if(jQuery('#modal').hasClass('open')){
+				jQuery('#modal').find('.modal-link a[rel="prev"]').click();
+			}//end open modal	
 		}
 		e.preventDefault();
 	}
@@ -731,30 +757,47 @@ $('.filter-menu li').removeClass('activeSlide');
 	   	  }); 
     });
    
+  var modalPosition = 0;
  function activateLinks(){
+ 
 	 jQuery('.modal-link a').click(function(e) {
-	        
+	 
+	        modalPosition = modalPosition + 1;
 	         var target = jQuery(this);
 	         var targetID = target.attr('href');
 	         var modal = jQuery('#modal');	      
-	    
+		    
 	    if(jQuery('html').hasClass('no-touch')){//Scripts for touch-enabled devices  
 		   
-		    var  modalPosition = modal.css('margin-left');
-		      if(target.attr('rel') == 'prev'){
-			      var  animationDirection = '150%';
-		      }
-		      else if(target.attr('rel') == 'next'){
-		          var  animationDirection = '-150%';
-		      }
+		 if(modalPosition == 1 && getBrowser() == 'safari'){
+		      modalPosition = modal.css('margin-left');
+				
+						        modalPosition = 0-parseInt(modalPosition)/2;
+		        
+		        
+		       
+		        }
+		else{
+		modalPosition = modal.css('margin-left');
+		}
+		           if(target.attr('rel') == 'prev'){
+		               var  animationDirection = '1000px';
+		           }
+		           else if(target.attr('rel') == 'next'){
+		               var  animationDirection = '-2000px';
+		           }
 		      
+		       modal.css('margin-left', modalPosition);
+		       
 		       modal.animate({'margin-left':animationDirection}, 300, 'easeInQuad', function(){
 			       var modalContent =  $.ajax({
 		     	    url: targetID,
 		     	    context: document.body
 		     	  }).done(function() { 
 		     	    modal.find('#modal-content').html(modalContent.responseText);
+		     	    modal.animate({'margin-left':modalPosition}, 300, 'easeOutQuad', function(){
 		     	    modal.reveal();
+		     	    });
 		     	    if(jQuery(target).attr('rel') == 'prev'){
 		     	    jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
 		     	    }
@@ -764,7 +807,7 @@ $('.filter-menu li').removeClass('activeSlide');
 		     	    activateLinks();
 		     	    
 		     	  }); 
-		      modal.animate({'margin-left':modalPosition}, 300, 'easeOutQuad');
+		     
 		     	  });
      	  }
      	  else { //touch devices dont animate

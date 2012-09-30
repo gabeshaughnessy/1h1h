@@ -10,17 +10,7 @@ License: GPL 3.0
 License URI: http://www.gnu.org/copyleft/gpl.html
 
 */
-/* ipad console for outputting javascript logs */
-.ipad-console {
-	position: fixed;
-	top:  100px;
-	right: 10px;
-	z-index:  10000;
-	color:  #F00;
-	text-shadow: 0 0 3px #000;
-	font-weight: bold;
-	font: monospace;
-}
+
 /* reset */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -67,7 +57,7 @@ body{
  color:  #333;
  font-family: 'Muli', arial, sans-serif; 
  /* For Swipe Events on windows tablets */
- 
+ overflow-x:  hidden;
  -ms-content-zooming: none;/* Disable pan/zoom */
  }
 #wrapper {
