@@ -735,9 +735,12 @@ $('.filter-menu li').removeClass('activeSlide');
 	    
 	    context: document.body
 	  }).done(function() { 
+	  
 	    modal.find('#modal-content').html(modalContent.responseText);
-	     modal.reveal();
+	    
+	     modal.reveal().fitVids();;
 	     activateLinks();
+	     
 	  }); 
 
     });
@@ -751,9 +754,12 @@ $('.filter-menu li').removeClass('activeSlide');
 	    url: targetID,
 	    context: document.body
 	  }).done(function() { 
+	   
 	   modal.find('#modal-content').html(modalContent.responseText);
-	    modal.reveal();
+	   
+	    modal.reveal().fitVids();
 	    activateLinks();
+	     
 	   	  }); 
     });
    
@@ -794,9 +800,11 @@ $('.filter-menu li').removeClass('activeSlide');
 		     	    url: targetID,
 		     	    context: document.body
 		     	  }).done(function() { 
+		     	   
 		     	    modal.find('#modal-content').html(modalContent.responseText);
+		     	    
 		     	    modal.animate({'margin-left':modalPosition}, 300, 'easeOutQuad', function(){
-		     	    modal.reveal();
+		     	    modal.reveal().fitVids();
 		     	    });
 		     	    if(jQuery(target).attr('rel') == 'prev'){
 		     	    jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
@@ -806,7 +814,7 @@ $('.filter-menu li').removeClass('activeSlide');
 		     	    }
 		     	    activateLinks();
 		     	    
-		     	  }); 
+		     			     	  }); 
 		     
 		     	  });
      	  }
@@ -815,8 +823,9 @@ $('.filter-menu li').removeClass('activeSlide');
      	    url: targetID,
      	    context: document.body
      	  }).done(function() { 
-     	    modal.find('#modal-content').html(modalContent.responseText);
-     	    modal.reveal();
+	        modal.find('#modal-content').html(modalContent.responseText);
+	        
+     	    modal.reveal().fitVids();
      	    if(jQuery(target).attr('rel') == 'prev'){
      	    jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
      	    }
