@@ -25,6 +25,9 @@
 	margin-right:  10px;
 	margin-bottom: 10px;
 }
+.reveal-modal .fitvid {
+	clear: both;
+}
 
 h1,h2,h3,h4,h5,h6 {
 	font-family: 'Fredericka the Great' serif;
