@@ -7,6 +7,8 @@
 			<div id="main-hat" class="hat"><span class="fredericka">San Francisco, CA</span></div>
 			<div id="main-logo">One Hat One Hand</div>
 			<div id="scroll-cta" class="cta muli"><div class="thick-line line"></div><p>scroll down to navigate the site</p><div class="thick-line line"></div></div>
+			
+			<div id="keys-cta" class="cta muli"><div class="thick-line line"></div><span class="keyboard_arrows"></span><p>or use the keyboard </p><div class="thick-line line"></div></div>
 			<div id="login-link">
 				<span class="thin-line line"></span><a href="login" title="login to the site" class="parisienne">login</a><span class="thin-line line"></span>
 			</div>

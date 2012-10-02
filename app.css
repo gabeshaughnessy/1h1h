@@ -90,3 +90,11 @@ p {
 	padding-right:  15px;
 }
 
+.keyboard_arrows {
+	background: url(images/arrows.png) no-repeat top;
+	display: block;
+	float:  left;
+	margin: 0 10px;
+	width:  35px;
+	height: 23px;
+}
