@@ -1,8 +1,6 @@
 
 <?php if ( have_posts() ) : ?>
 
-			
-
 				<?php /* Start the Loop */ ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 				
@@ -29,9 +27,7 @@
 
 				<?php endwhile; 
 				wp_reset_postdata();
-				?>
-
-				
+				?>		
 
 			<?php else : ?>
 			<p>Sorry, Nothing Here</p>

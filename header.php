@@ -9,11 +9,16 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="">
-
+<meta name="apple-mobile-web-app-capable" content="yes">
 <meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
+<meta name="description" content="<?php echo get_bloginfo('description'); ?>">
 <title><?php wp_title( '&laquo;', true, 'right' ); ?> <?php bloginfo( 'name' ); ?></title>
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+<link rel="apple-touch-icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/iOs_114px.jpg" />
 
+<link rel="apple-touch-icon" sizes="72x72" href="<?php bloginfo('stylesheet_directory'); ?>/images/iOs_75px.jpg" />
+
+<link rel="apple-touch-icon" sizes="114x114" href="<?php bloginfo('stylesheet_directory'); ?>/images/iOs_114px.jpg" />
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/jquery-ui-1.8.21.custom.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" media="screen" />
 <!-- Google Fonts -->
