@@ -723,6 +723,13 @@ $('.filter-menu li').removeClass('activeSlide');
 });
 //End isotope activation scripts
 
+/* Video playback control */
+function stopVideo(container){
+
+jQuery('.close-reveal-modal').bind('click', function() {
+    container.find('#modal-content').empty();
+});
+}
 /* Modal Activations */
 
     jQuery('.artist').click(function() {
@@ -738,7 +745,8 @@ $('.filter-menu li').removeClass('activeSlide');
 	  
 	    modal.find('#modal-content').html(modalContent.responseText);
 	    
-	     modal.reveal().fitVids();;
+	     modal.reveal().fitVids();
+	      stopVideo(modal);
 	     activateLinks();
 	     
 	  }); 
@@ -758,6 +766,7 @@ $('.filter-menu li').removeClass('activeSlide');
 	   modal.find('#modal-content').html(modalContent.responseText);
 	   
 	    modal.reveal().fitVids();
+	     stopVideo(modal);
 	    activateLinks();
 	     
 	   	  }); 
@@ -805,6 +814,7 @@ $('.filter-menu li').removeClass('activeSlide');
 		     	    
 		     	    modal.animate({'margin-left':modalPosition}, 300, 'easeOutQuad', function(){
 		     	    modal.reveal().fitVids();
+		     	     stopVideo(modal);
 		     	    });
 		     	    if(jQuery(target).attr('rel') == 'prev'){
 		     	    jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
@@ -826,6 +836,7 @@ $('.filter-menu li').removeClass('activeSlide');
 	        modal.find('#modal-content').html(modalContent.responseText);
 	        
      	    modal.reveal().fitVids();
+     	     stopVideo(modal);
      	    if(jQuery(target).attr('rel') == 'prev'){
      	    jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
      	    }

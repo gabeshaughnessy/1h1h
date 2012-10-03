@@ -10,38 +10,39 @@
 
 get_header(); ?>
 
-		<div id="primary">
-			<div id="content" role="main">
-
+			<div class="section">
+		<div class="wrapper post-type-wrapper">
 			<?php if ( have_posts() ) : ?>
 
-			
+		
 
 				<?php /* Start the Loop */ ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 
-				
+									<h2 class="section-title"><?php the_title(); ?></h2>
+									<p class="section-logo">One Hat One Hand</p>
+								<div  class="post-box">
+									<div class="primary">
+											<div class="content" role="main">
+											<?php
+										the_content();
+											?>
+										</div>
+									</div>
+								</div>
+								
+								
+					
+						</div><!-- end case_studies wrapper -->
+					</div><!-- end case_studies section -->
 				<?php endwhile; ?>
 
 				
 
 			<?php else : ?>
-
-				<article id="post-0" class="post no-results not-found">
-					<header class="entry-header">
-						<h1 class="entry-title"></h1>
-					</header><!-- .entry-header -->
-
-					<div class="entry-content">
-						<p>Oops! Couldn't find what you were looking for! Maybe try searching?</p>
-						<?php get_search_form(); ?>
-					</div><!-- .entry-content -->
-				</article><!-- #post-0 -->
-
 			<?php endif; ?>
 
-			</div><!-- #content -->
-		</div><!-- #primary -->
+
 
 
 <?php get_footer(); ?>
