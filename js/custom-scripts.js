@@ -726,9 +726,9 @@ $('.filter-menu li').removeClass('activeSlide');
 /* Video playback control */
 function stopVideo(container){
 
-jQuery('.close-reveal-modal').bind('click', function() {
+
     container.find('#modal-content').empty();
-});
+
 }
 /* Modal Activations */
 
@@ -745,8 +745,10 @@ jQuery('.close-reveal-modal').bind('click', function() {
 	  
 	    modal.find('#modal-content').html(modalContent.responseText);
 	    
-	     modal.reveal().fitVids();
-	      stopVideo(modal);
+	     modal.reveal({
+	     close: function(){stopVideo(modal);}
+	     }).fitVids();
+	    
 	     activateLinks();
 	     
 	  }); 
@@ -765,8 +767,10 @@ jQuery('.close-reveal-modal').bind('click', function() {
 	   
 	   modal.find('#modal-content').html(modalContent.responseText);
 	   
-	    modal.reveal().fitVids();
-	     stopVideo(modal);
+	    modal.reveal({
+	    close: function(){stopVideo(modal);}
+	    }).fitVids();
+	     
 	    activateLinks();
 	     
 	   	  }); 
@@ -813,8 +817,10 @@ jQuery('.close-reveal-modal').bind('click', function() {
 		     	    modal.find('#modal-content').html(modalContent.responseText);
 		     	    
 		     	    modal.animate({'margin-left':modalPosition}, 300, 'easeOutQuad', function(){
-		     	    modal.reveal().fitVids();
-		     	     stopVideo(modal);
+		     	    modal.reveal({
+		     	    close: function(){stopVideo(modal);}
+		     	    }).fitVids();
+		     	    
 		     	    });
 		     	    if(jQuery(target).attr('rel') == 'prev'){
 		     	    jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
@@ -835,8 +841,10 @@ jQuery('.close-reveal-modal').bind('click', function() {
      	  }).done(function() { 
 	        modal.find('#modal-content').html(modalContent.responseText);
 	        
-     	    modal.reveal().fitVids();
-     	     stopVideo(modal);
+     	    modal.reveal({
+     	    close: function(){stopVideo(modal);}
+     	    }).fitVids();
+     	    
      	    if(jQuery(target).attr('rel') == 'prev'){
      	    jQuery('#portfolio-wrapper').cycle('next'); //this is reversed to match wp post order
      	    }
