@@ -497,9 +497,9 @@ overflow: hidden;
 	font-family: 'ArialBlack';
 }
 .post-box {
-	width:  70%;
+	width:  672px;
 	float:  right;
-	overflow: hidden;
+	
 	height: 90%;
 }
 .post-box.full-width {
@@ -606,10 +606,12 @@ overflow: hidden;
 
 .alignleft {
 	float:  left;
-	margin-right: 10px;
-	margin-bottom:  10px;
+	margin:0 5px 10px 5px;
 }
-
+.alignright {
+	float:  right;
+	margin:0 5px 10px 5px;
+}
 .clear {
 	clear: both;
 	width:  100%;
