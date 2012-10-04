@@ -315,6 +315,9 @@ box-shadow: 0 4px 40px rgba(0,0,0,.5);
 	float:  left;
 	padding: 0 1% 0 0;
 }
+.two {
+	width: 49.5%;
+}
 .three {
 	width: 32.66%;
 }
