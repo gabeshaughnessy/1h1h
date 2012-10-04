@@ -508,6 +508,9 @@ overflow: hidden;
 .post-box .content {
 	width:  672px !important;
 }
+.full-width .post-box .content {
+	width:  100% !important;
+}
 .post-box .primary {
 	width:  100%;
 }
