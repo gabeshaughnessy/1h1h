@@ -23,6 +23,10 @@ return jQuery.uaMatch(navigator.userAgent).browser;
 }
 /* end browser test */
 
+/* no link - void clicks */
+function noLink(){
+return false;
+}
 function navTabActivate(tab, target){ //displays the portfolio navigation tab
 	jQuery(tab).click(function(e){
 	jQuery(target).slideDown('slow');
@@ -71,7 +75,7 @@ function imageTexturizer(){//puts a texture over all the images
 
 	jQuery('img:not(#portfolio img, img.no-texture)').each(function(){
 		jQuery(this).wrap('<div class="image-wrapper">');
-		jQuery(this).parent().css({'background-image': 'url('+templateDir + '/images/paper_bg2.png), url('+ jQuery(this).attr('src')+')', 'background-repeat': 'repeat, no-repeat', 'background-size':'1400px 752px, contain', 'background-position':'center, center'});
+		jQuery(this).parent().css({'background-image': 'url('+templateDir + '/images/paper_bg2.png), url('+ jQuery(this).attr('src')+')', 'background-repeat': 'repeat, no-repeat', 'background-size':'1400px 752px, contain'});
 		
 		jQuery(this).css({'opacity':0});
 		jQuery('.image-wrapper img').mouseover(function(e){
@@ -560,7 +564,7 @@ jQuery(document).ready(function($){
 //KEYBOARD EVENTS
 
 $('body').keydown(function(e){
-	console.log('keycode: ',e.keyCode); //uncomment to see keycodes
+	//console.log('keycode: ',e.keyCode); //uncomment to see keycodes
 	var targetSection;
 	var currentSection = jQuery('.section.active');
 	

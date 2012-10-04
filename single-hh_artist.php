@@ -20,7 +20,9 @@
 				</div>
 				
 				<div class="modal-footer">
-					<div class="navigation"><p class="modal-link three columns first"><span class="left arrow"><?php next_post_link('%link', 'Previous Profile'); ?></span></p><div class="hathand hand three columns"><a href=""></a></div><p class="modal-link three columns last"><span class="right arrow"><?php previous_post_link('%link', 'Next Profile'); ?></span></p>
+					<div class="navigation"><p class="modal-link three columns first"><span class="left arrow"><?php next_post_link('%link', 'Previous Profile'); ?></span></p><div class="hathand hand three columns"><a href=
+					<?php if(is_user_logged_in()){ echo '"'.get_edit_post_link($post).'"'; } 					 else { echo '"#" class="no-link"';  ?> onclick="return noLink()" <?php
+					} ?>></a></div><p class="modal-link three columns last"><span class="right arrow"><?php previous_post_link('%link', 'Next Profile'); ?></span></p>
 					</div>
 				</div>
 				
