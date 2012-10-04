@@ -502,6 +502,12 @@ overflow: hidden;
 	
 	height: 90%;
 }
+.post-box .content {
+	width:  100%;
+}
+.post-box .primary {
+	width:  100%;
+}
 .post-box.full-width {
 	float: left;
 	width:  100%;
