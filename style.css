@@ -503,7 +503,7 @@ overflow: hidden;
 	height: 90%;
 }
 .post-box .content {
-	width:  672px;
+	width:  672px !important;
 }
 .post-box .primary {
 	width:  100%;
