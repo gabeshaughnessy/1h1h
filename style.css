@@ -600,6 +600,20 @@ overflow: hidden;
 .activeSlide img {
 	opacity: 1 !important;
 }
+
+
+/* image styles for alignment and positioning */
+
+.alignleft {
+	float:  left;
+	margin-right: 10px;
+	margin-bottom:  10px;
+}
+
+.clear {
+	clear: both;
+	width:  100%;
+	}
 /* --- Jquery UI Slider overrides -- */
 .ui-widget-content {
 	background: #333;

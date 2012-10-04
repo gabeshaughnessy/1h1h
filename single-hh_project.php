@@ -11,6 +11,7 @@
 				</div>
 				
 				<div class="left modal-inner">
+				<div class="three columns first">
 				<?php 
 				$image_attr = array(
 							
@@ -18,6 +19,7 @@
 							
 						);
 				the_post_thumbnail('post-thumbnail', $image_attr); ?>
+				</div>
 				<?php the_content(); ?>
 				</div>
 				
