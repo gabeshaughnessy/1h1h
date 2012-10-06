@@ -627,6 +627,8 @@ overflow: hidden;
 .clear {
 	clear: both;
 	width:  100%;
+	float:  left;
+	margin:  10px 0;
 	}
 /* --- Jquery UI Slider overrides -- */
 .ui-widget-content {
