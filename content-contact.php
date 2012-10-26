@@ -10,10 +10,11 @@
 			<div id="address-cta" class="cta"><span class="thin-line line"></span><p>1335 Yosemite Ave. San Francisco, CA 94124</p><span class="thin-line line"></span></div>
 			
 			<div id="contact-form-container">
-				<form id="contact-form" >
-				<a id="contact-accordion-controller"class="accordion-control">Send us a Message</a>
-				<div class="accordion" id="contact-accordion" data-controller="#contact-accordion-controller">
-					<fieldset>
+			<a id="contact-accordion-controller"class="accordion-control">Send us a Message</a>
+			<div class="accordion" id="contact-accordion" data-controller="#contact-accordion-controller">
+			<?php echo do_shortcode('[gravityform id="1" name="Contact Form" title="false" description="false"]'); ?>
+				<!--<form id="contact-form" >
+									<fieldset>
 						<label for="name-field">Name</label>
 						<input type="text" name="name-field" value="" placeholder="Give me a name Atreyu!" />
 					</fieldset>
@@ -26,8 +27,8 @@
 						<textarea name="note-field" value="" placeholder="Please limit yourself to a minimum of vulgarity and profanity" ></textarea>
 					</fieldset>
 					<input type="submit" name="contact-submit" value="Submit" />
+				</form>-->
 				</div>
-				</form>
 			</div>
 			<div id="main-hand-contact" class="hand"><span class="fredericka">Imagine Design Build</div>
 		</div><!--end post box -->

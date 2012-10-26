@@ -209,18 +209,19 @@ body{
 	color: #999;
 	font-family: 'ArialBlack', arial, sans-serif;
 }
-#contact-form {
+#contact-form, .gform_wrapper{
 	margin: 10px;
 	padding:  10px;
 	border:  1px solid #999;
+	max-width: 100%;
 }
-#contact-form label {
+#contact-form label, .gform_wrapper label {
 	clear: both;
 	display: block;
 	text-align: left;
 	text-transform: lowercase;
 }
-#contact-form input[type="text"]{
+#contact-form input[type="text"], .gform_wrapper input[type="text"]{
 	text-align: left;
 	width: 97%;
 	float: left;
@@ -231,7 +232,7 @@ body{
 	border-radius: 4px;
 }
 
-#contact-form textarea{
+#contact-form textarea, .gform_wrapper textarea{
 	text-align: left;
 	width: 97%;
 	float: left;
@@ -242,7 +243,7 @@ body{
 	border-radius: 4px;
 }
 
-#contact-form input[type="submit"]{
+#contact-form input[type="submit"], .gform_wrapper input[type="submit"]{
 	background: transparent;
 	border: 2px solid #555;
 	padding: 5px;
