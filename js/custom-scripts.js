@@ -360,7 +360,7 @@ function buildPageAnchors(slide){
 	
 	
 		jQuery('#services .content').cycle({ 
-		    fx:     'scrollHorz', 
+		    fx:     'fade', 
 		    speed:  'slow', 
 		    timeout: 0, 
 		    pager:  '#services-menu', 
@@ -373,7 +373,7 @@ function buildPageAnchors(slide){
 	
 		
 		jQuery('#case_studies .content').cycle({ 
-		    fx:     'scrollHorz', 
+		    fx:     'fade', 
 		    speed:  'fast', 
 		    timeout: 0, 
 		    pager:  '#case_studies-menu', 
