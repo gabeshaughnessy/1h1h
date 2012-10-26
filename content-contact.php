@@ -12,7 +12,7 @@
 			<div id="contact-form-container">
 			<a id="contact-accordion-controller"class="accordion-control">Send us a Message</a>
 			<div class="accordion" id="contact-accordion" data-controller="#contact-accordion-controller">
-			<?php echo do_shortcode('[gravityform id="1" name="Contact Form" title="false" description="false"]'); ?>
+			<?php echo do_shortcode('[gravityform id=1 name=ContactForm title=false description=false ajax=true]'); ?>
 				<!--<form id="contact-form" >
 									<fieldset>
 						<label for="name-field">Name</label>
