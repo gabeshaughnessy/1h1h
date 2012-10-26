@@ -14,6 +14,7 @@
 										'post_type' => 'hh_client',
 										'posts_per_page' => -1
 									
+									
 							);
 							$custom_query = new WP_Query( $args );
 							if ( $custom_query->have_posts() ) : ?>
