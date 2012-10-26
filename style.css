@@ -209,11 +209,11 @@ body{
 	color: #999;
 	font-family: 'ArialBlack', arial, sans-serif;
 }
-#contact-form, .gform_wrapper{
-	margin: 10px;
+#contact-form, body .gform_wrapper{
+	margin: 10px ;
 	padding:  10px;
 	border:  1px solid #999;
-	max-width: 100%;
+	max-width: 100% ;
 }
 #contact-form label, .gform_wrapper label {
 	clear: both;
