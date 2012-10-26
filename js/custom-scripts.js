@@ -306,7 +306,7 @@ document.body.addEventListener("gesturechange", gestureChange, false);
 
 function makeCycles(){
 		jQuery('#portfolio-wrapper').before('<ul id="portfolio-nav">').cycle({ 
-		    fx:     'scrollHorz', 
+		    fx:     'fade', 
 		    speed:  'slow', 
 		    timeout: 0, 
 		    pager:  '#portfolio-nav', 
