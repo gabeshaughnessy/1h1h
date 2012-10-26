@@ -145,7 +145,7 @@ function whichSectionIsActive(){
 	else if (jQuery('#contact').hasClass('active')) {
 			jQuery('#portfolio .nav-tab').hide();
 			jQuery('#portfolio-nav').slideUp('fast');
-			jQuery('.menu-main-menu-container').slideUp('fast');
+			jQuery('.menu-main-menu-container').slideDown('slow');
 }
 
 
@@ -542,7 +542,7 @@ jQuery(window).load(function(){
 	  
 	  jQuery('#contact').addClass('active');
 	    // element is now visible in the viewport
-	    jQuery('.menu-main-menu-container').slideUp('fast');
+	    //jQuery('.menu-main-menu-container').slideUp('fast');
 	    jQuery('#portfolio-nav').slideUp('fast');
 	    jQuery('#portfolio .nav-tab').hide();
 	  } 
@@ -554,6 +554,15 @@ jQuery(window).load(function(){
 	  moveMenuIndicator();
 	});
 	
+	jQuery('#modal').bind('inview', function(event, visible){
+	if (visible == true) {
+		
+	} 
+	else {
+		jQuery('.close-reveal-modal').click(); 
+	}
+	
+	});
 	
 			});
 
