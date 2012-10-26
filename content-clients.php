@@ -36,6 +36,7 @@
 							<h2 class="post-title"><?php the_title();  ?> </h2>
 								</div><!--end of the post -->
 								<?php 
+								
 								if ($i > $post_count/3 && $i < ($post_count/3 + 1)){ ?>
 								</div>
 								<div class="three columns">

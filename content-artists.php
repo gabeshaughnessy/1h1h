@@ -24,7 +24,7 @@
 				 				
 				 						'post_type' => 'hh_artist',
 				 						'posts_per_page' => '-1',
-				 						'orderby' => 'rand'
+				 						'orderbyZ' => 'rand'
 				 					
 				 			);
 				 			$custom_query = new WP_Query( $args );
