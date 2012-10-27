@@ -86,10 +86,16 @@ function my_scripts_method() {
 	wp_enqueue_script('inview',
 		get_template_directory_uri() . '/js/inview.js',
 		array('jquery'));
+	if(is_home()){
+	wp_enqueue_script('home_scripts',
+		get_template_directory_uri() . '/js/home-scripts.js',
+		array('jquery', 'mousewheel') );
+	}
+	else{
 	wp_enqueue_script('custom_scripts',
 		get_template_directory_uri() . '/js/custom-scripts.js',
 		array('jquery', 'mousewheel') );
-	
+	}
 
 		
 	//FOUNDATION REVEAL

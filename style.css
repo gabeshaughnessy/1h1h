@@ -659,7 +659,8 @@ background:  transparent url(images/hatches50px.png) repeat; }
 	margin: 6px;
 	}
 .artist {
-	opacity: 0;
+	opacity:  0;
+	margin: 6px;
 }
 .isotope {
 	-webkit-transition: all .5s ease-in;
