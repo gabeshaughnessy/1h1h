@@ -212,11 +212,11 @@ function buildPageAnchors(slide){
 	} 
 	
 	
-		jQuery('#services .content').cycle({ 
+		jQuery('.slider.content').cycle({ 
 		    fx:     'fade', 
 		    speed:  'slow', 
 		    timeout: 0, 
-		    pager:  '#services-menu', 
+		    pager:  '.section-menu', 
 		     
 		    // callback fn that creates a thumbnail to use as pager anchor 
 		    pagerAnchorBuilder: function(idx, slide) { 
@@ -224,21 +224,7 @@ function buildPageAnchors(slide){
 		    	}
 	    	});
 	
-		
-		jQuery('#case_studies .content').cycle({ 
-		    fx:     'fade', 
-		    speed:  'fast', 
-		    timeout: 0, 
-		    pager:  '#case_studies-menu', 
-		     
-		    // callback fn that creates a thumbnail to use as pager anchor 
-		    pagerAnchorBuilder: function(idx, slide) { 
-		   return buildPageAnchors(slide);	    } 
-		}
-		);
-		
-		
-		jQuery('#portfolio-nav').hide();
+			jQuery('#portfolio-nav').hide();
 		
 	
 		jQuery('.section-title').each(function(){
@@ -324,13 +310,15 @@ jQuery(window).load(function(){
 		
 			});
 
+
 /* +++++ Touch and Non-Touch Scripts ++++++ */
 
 jQuery(document).ready(function($){
 
 jQuery(window).load(function(){
 	moveMenuIndicator();
-	hhAccordion('#contact-accordion');//the contact form accordion
+	makeSwipes('.wrapper');
+		hhAccordion('#contact-accordion');//the contact form accordion
 	var $container = jQuery('.filter-target');
 		$('.artist').animate({'opacity':1, 'margin':'5px'}, 500);
 

@@ -10,6 +10,10 @@
 
 get_header(); 
 wp_nav_menu( array('menu' => 'Global Menu' ));
+global $post;
+$content_type = get_post_meta($post->ID, 'hh_content_post_type', true);
+$filter_tax = get_post_meta($post->ID, 'hh_filter_taxonomy', true);
+
 ?>
 
 			<div id="portfolio" class="section">
@@ -17,7 +21,7 @@ wp_nav_menu( array('menu' => 'Global Menu' ));
 					
 					
 					<?php //Portfolio Loop Goes Here
-					hh_portfolio_loop('hh_project', 10);
+					hh_portfolio_loop($content_type, 10);
 					/* +++++ T H E   P O R T F O L I O   L O O P ++++++ */
 					//////////////////////////////////////////////////////
 					function hh_portfolio_loop($hhpost_type, $hhcount){ ?>
