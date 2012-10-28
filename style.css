@@ -75,7 +75,8 @@ body{
 	background-position: top;
 	
 }
-.menu-main-menu-container {
+.menu-main-menu-container, 
+.menu-global-menu-container {
 	position: fixed;
 	top: 0px;
 	z-index:  1000;
@@ -92,31 +93,37 @@ body{
 	-o-transition: background-position .5s ease-in-out;
 	transition: background-position .5s ease-in-out;
 }
-.logged-in .menu-main-menu-container {
+.logged-in .menu-main-menu-container, 
+.logged-in .menu-global-menu-container {
 	top: 27px;
 }
-#menu-main-menu {
+#menu-main-menu, 
+#menu-global-menu {
 	width: 960px;
 
 	margin: 0 auto;
 	text-align: center;
 }
-#menu-main-menu .menu-item {
+#menu-main-menu .menu-item, 
+#menu-global-menu .menu-item {
 	list-style: none;
 	float: left;
 	margin: 5px 40px 0 0;
 	padding: 5px;
 	
 }
-#menu-main-menu .menu-item.active {
+#menu-main-menu .menu-item.active, 
+#menu-global-menu .menu-item.active {
 	background: #f00;
 	display:block;
 	float: left;	
 }
-#menu-main-menu .menu-item.active {
+#menu-main-menu .menu-item.active, 
+#menu-global-menu .menu-item.active {
 	font-size: 1.5em;
 }
-#menu-main-menu .menu-item a{
+#menu-main-menu .menu-item a,
+#menu-global-menu .menu-item a{
 		font-family: 'Muli', arial, sans-serif;
 		text-transform: uppercase;
 		text-decoration: none;
@@ -124,7 +131,8 @@ body{
 		text-shadow: 0 1px 1px rgba(255,255,255,.7);
 		font-weight: bold;
 }
-#menu-main-menu .menu-item a:hover{
+#menu-main-menu .menu-item a:hover,
+#menu-global-menu .menu-item a:hover{
 	
 }
 #main-hat, #main-hat-contact {
@@ -182,6 +190,9 @@ body{
 	padding: 15px 0;
 }
 #call-cta p{
+	padding: 0 12px;
+}
+.page#call-cta p{
 	padding: 0 26px;
 }
 
@@ -546,7 +557,8 @@ overflow: hidden;
 	text-align: center;
 	float: left;
 }
-#menu-main-menu .hathand {
+#menu-main-menu .hathand,
+#menu-global-menu .hathand {
 	padding: 0 5px;
 	margin-top: 1px;
 }
@@ -605,6 +617,9 @@ overflow: hidden;
 	top: 10px;
 	width: 27px;
 	margin: 0;
+}
+.page #address-cta .line{
+	width: 18px;
 }
 .post-footer .hathand a{
 	margin:  10px auto;

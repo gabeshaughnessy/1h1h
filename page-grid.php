@@ -9,8 +9,9 @@
 
 
 get_header(); 
-global $post;
 
+global $post;
+wp_nav_menu( array('menu' => 'Global Menu' ));
 if(have_posts()) : while(have_posts()) : the_post();
 $content_type = get_post_meta($post->ID, 'hh_content_post_type', true);
 $filter_tax = get_post_meta($post->ID, 'hh_filter_taxonomy', true);
@@ -82,18 +83,5 @@ $filter_tax = get_post_meta($post->ID, 'hh_filter_taxonomy', true);
 			
 <?php endwhile; ?>
 <?php endif; ?>
-<script src="" type="text/javascript">
-jQuery(document).ready(funtion($){
-var $container = jQuery('.filter-target');
-if($container.length > 0){
-	$container.isotope({
-	  filter: '.artist'
-	});
-	$container.find('.isotope-item').animate({'opacity':1}, 500);	
-}
-});
-
-</script>
-
 
 <?php get_footer(); ?>

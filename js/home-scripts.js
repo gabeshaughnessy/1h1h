@@ -238,31 +238,16 @@ function moveMenuIndicator(){
 	});//end each for menu item links
 	
 	//menu for touch devices
-	activeSection = jQuery('.active').first();
+	var activeSection = jQuery('.active').first();
+	var currentItem = jQuery('#menu-main-menu a[href="#'+ activeSection.attr("id") +'"]');
+	var itemOffset = currentItem.offset().left;
+	var itemWidth = currentItem.width();
 	
-	if(activeSection.attr('id') == "landing"){	
-		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos - 50 + "px 0" });
-	}
-	else if(activeSection.attr('id') == "portfolio"){
 	
-		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos - 500 + "px 0" });
-	}
-	else if(activeSection.attr('id') == "services"){
-		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos - 360 + "px 0" });
-	}
-	else if(activeSection.attr('id') == "case_studies"){
-		jQuery('.menu-main-menu-container').css({"background-position":  menuLeftPos - 220 +"px 0" });
-	}	
-	else if(activeSection.attr('id') == "artists"){
-		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos + 60 + "px 0" });
-	}
-	else if(activeSection.attr('id') == "clients"){
-		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos + 170 + "px 0" });
-	}
-	else if(activeSection.attr('id') == "contact"){
-		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos + 290 + "px 0" });
-		//jQuery('.sidebar').slideDown();
-	}
+	var tabPosition = itemOffset + itemWidth/2; 
+	
+	jQuery('.menu-main-menu-container').css({'backgroundPosition': tabPosition});
+
 	
 	
 }//end moveMenuIndicator function
