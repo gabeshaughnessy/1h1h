@@ -44,7 +44,7 @@ function add_excerpts_to_pages() {
 
 //Register a Main Menu
 register_nav_menu( "homepage", "The fixed menu at the top of pages, uses relative links to scroll through the page." );
-register_nav_menu( "otherpages", "The menu that shows up on other pages besides the homepage, with links to other setions in the site" );
+register_nav_menu( "global", "The menu that shows up by default, with links to other pages" );
 
 //add javascript to frontend
 

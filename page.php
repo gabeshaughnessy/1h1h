@@ -8,7 +8,9 @@
  * @subpackage 1H1H
  */
 
-get_header(); ?>
+get_header(); 
+wp_nav_menu( array('menu' => 'Global Menu' ));
+?>
 
 			<div class="section">
 		<div class="wrapper post-type-wrapper">

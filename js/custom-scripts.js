@@ -48,6 +48,24 @@ function centerElement(element){
 	'top' : elementOffset.y
 	});
 }
+/* Accordions */
+function hhAccordion(target){
+	jQuery(target).slideUp('fast');
+	var accordionControl = jQuery(target).attr('data-controller');
+	jQuery(accordionControl).click(function(e){
+		jQuery(target).toggleClass('in');
+		if(!jQuery(target).hasClass('in')){
+		jQuery(target).slideUp('fast');
+		}
+		else {
+			jQuery(target).slideDown('fast');
+		}
+		
+				e.preventDefault();
+	});
+	
+}//End of accordions function
+
 function falsePageHeight(){ //make the page the total height of all the sections with fixed positions
 	pageHeight = 0;
 	
@@ -64,9 +82,8 @@ function resizeSections(){
 	jQuery('#fixed_bg').css({'height':windowHeight});
 	jQuery('#portfolio-wrapper').css({"width": windowWidth, "height": windowHeight + 100});
 	jQuery('.section').css({"width": windowWidth, "min-height": windowHeight + 100});
-	//jQuery('body').css({'height':windowHeight, 'overflow':'hidden'});
-	//jQuery('.menu-main-menu-container').css({"width": windowWidth});
-	var menuPos =  jQuery('#menu-main-menu').offset();
+	
+	var menuPos =  jQuery('#menu-main-menu, #menu-global-menu').offset();
 	jQuery('#portfolio-nav').css({"paddingLeft": menuPos.left});
 }
 //End resizeSections
@@ -221,7 +238,6 @@ function buildPageAnchors(slide){
 		);
 		
 		
-		//jQuery('.menu-main-menu-container').hide();
 		jQuery('#portfolio-nav').hide();
 		
 	
@@ -233,6 +249,65 @@ function buildPageAnchors(slide){
 		});
 	}//End make cycles
 
+function moveMenuIndicator(){
+
+	var currentItem = jQuery('.current-menu-item');
+	var itemOffset = currentItem.offset().left;
+	var itemWidth = currentItem.width();
+	var menuOffset = currentItem.parent().offset().left;
+	var windowWidth = jQuery('body').width();
+	var menuWidth = jQuery('#menu-global-menu').width();
+	
+	var tabPosition = itemOffset + itemWidth/2; 
+	
+
+	var tabPosition = itemOffset + itemWidth/2; 
+	
+	console.log('item offset: ',itemOffset);
+	console.log('body width: ', windowWidth);
+	console.log('menu width: ', menuWidth);
+	console.log('menu offset: ', menuOffset);
+	console.log('item width: ',itemWidth);
+	console.log('tab position: ',tabPosition);
+	
+	jQuery('.menu-global-menu-container').css({'backgroundPosition': tabPosition});
+	/*jQuery('#menu-main-menu .menu-item a').each(function(){
+		var sectionID = jQuery(this).attr('href');
+		var sectionOffset = jQuery(sectionID).offset();
+		menuLeftPos = jQuery(this).parent().parent().offset().left;
+		sectionOffset.bottom = sectionOffset.top + jQuery(sectionID).height();
+	
+	});//end each for menu item links
+	
+	//menu for touch devices
+	activeSection = jQuery('.active').first();
+	
+	if(activeSection.attr('id') == "landing"){	
+		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos - 50 + "px 0" });
+	}
+	else if(activeSection.attr('id') == "portfolio"){
+	
+		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos - 500 + "px 0" });
+	}
+	else if(activeSection.attr('id') == "services"){
+		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos - 360 + "px 0" });
+	}
+	else if(activeSection.attr('id') == "case_studies"){
+		jQuery('.menu-main-menu-container').css({"background-position":  menuLeftPos - 220 +"px 0" });
+	}	
+	else if(activeSection.attr('id') == "artists"){
+		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos + 60 + "px 0" });
+	}
+	else if(activeSection.attr('id') == "clients"){
+		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos + 170 + "px 0" });
+	}
+	else if(activeSection.attr('id') == "contact"){
+		jQuery('.menu-main-menu-container').css({"background-position": menuLeftPos + 290 + "px 0" });
+		//jQuery('.sidebar').slideDown();
+	}*/
+	
+	
+}//end moveMenuIndicator function
 /* ============= Global Scripts ========*/
 jQuery(window).load(function(){
 
@@ -254,6 +329,8 @@ jQuery(window).load(function(){
 jQuery(document).ready(function($){
 
 jQuery(window).load(function(){
+	moveMenuIndicator();
+	hhAccordion('#contact-accordion');//the contact form accordion
 	var $container = jQuery('.filter-target');
 		$('.artist').animate({'opacity':1, 'margin':'5px'}, 500);
 
@@ -268,11 +345,13 @@ jQuery(window).load(function(){
 		}
 });
 	
-
+$(window).resize(function() {
+  moveMenuIndicator();
+});
 /* isotope activate */
 
 
-//ISTOPE MENU
+//IS0TOPE MENU
 // filter items when filter link is clicked
 $('.filter-menu a').click(function(){
 $('.filter-menu li').removeClass('activeSlide');
