@@ -256,7 +256,7 @@ function moveMenuIndicator(){
 	console.log('item width: ',itemWidth);
 	console.log('tab position: ',tabPosition);
 	
-	jQuery('.menu-global-menu-container').css({'backgroundPosition': tabPosition});
+	jQuery('.menu-global-menu-container').css({'background-position-x': tabPosition });
 	/*jQuery('#menu-main-menu .menu-item a').each(function(){
 		var sectionID = jQuery(this).attr('href');
 		var sectionOffset = jQuery(sectionID).offset();
