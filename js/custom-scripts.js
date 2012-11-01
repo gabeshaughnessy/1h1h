@@ -304,7 +304,7 @@ jQuery(window).load(function(){
 	
 	makeCycles();
 	imageTexturizer();
-	
+	resizeSections();
 	
 	centerElement(jQuery('#portfolio-control'));
 		
