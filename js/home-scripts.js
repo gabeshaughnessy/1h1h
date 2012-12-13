@@ -64,6 +64,7 @@ function resizeSections(){
 	jQuery('#fixed_bg').css({'height':windowHeight});
 	jQuery('#portfolio-wrapper').css({"width": windowWidth, "height": windowHeight + 100});
 	jQuery('.section').css({"width": windowWidth, "min-height": windowHeight + 100});
+	jQuery('#hand-navigation .hand').animate({'top': windowHeight/2}, 500);
 	//jQuery('body').css({'height':windowHeight, 'overflow':'hidden'});
 	//jQuery('.menu-main-menu-container').css({"width": windowWidth});
 	var menuPos =  jQuery('#menu-main-menu').offset();
@@ -298,6 +299,8 @@ function makeCycles(){
 		    speed:  'slow', 
 		    timeout: 0, 
 		    pager:  '#portfolio-nav', 
+		    next: '#next-hand',
+		    prev: '#prev-hand',
 		     
 		    // callback fn that creates a thumbnail to use as pager anchor 
 		    pagerAnchorBuilder: function(idx, slide) { 

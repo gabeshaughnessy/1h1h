@@ -70,9 +70,14 @@
 		 ?>
 	</div>
 	<div id="portfolio-control">
-		<div id="portfolio-title" > <span class="hh_text">One Hat One Hand</span> <span class="fredericka" >Portfolio</span></div>
+		<!--<div id="portfolio-title" > <span class="hh_text">One Hat One Hand</span> <span class="fredericka" >Portfolio</span></div>
 	
-		<div id="slider"></div>
+		<div id="slider"></div>-->
+		
+	</div>
+	<div id="hand-navigation">
+		<div id="next-hand" class="hand"></div>
+		<div id="prev-hand" class="hand"></div>
 	</div>
 	
 </div>

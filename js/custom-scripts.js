@@ -163,6 +163,8 @@ function makeCycles(){
 		    speed:  'slow', 
 		    timeout: 0, 
 		    pager:  '#portfolio-nav', 
+		    next: '#next-hand',
+		    prev: '#prev-hand',
 		     
 		    // callback fn that creates a thumbnail to use as pager anchor 
 		    pagerAnchorBuilder: function(idx, slide) { 

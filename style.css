@@ -578,7 +578,40 @@ float: left;
 .hathand.hand a{
 	background-image: url(images/small_hand.png);
 }
-
+#hand-navigation{
+	position: absolute;
+	z-index: 10000;
+	width: 100%;
+}
+#hand-navigation .hand {
+	display: block;
+	width:  110px;
+	height: 80px;
+	background-image: url(images/hands-filled.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	
+}
+#next-hand.hand {
+	right:  10px;
+	top: 200px;
+	background-position-y: 0;
+	background-position-x: -110px;
+	
+}
+#prev-hand.hand {
+	left:  10px;
+	top:  200px;
+	background-position-y: 0;
+	background-position-x: 0;
+	
+}
+#prev-hand.hand:hover, #next-hand.hand:hover{
+	background-position-y: -80px;
+}
+#prev-hand.hand:active, #next-hand.hand:active{
+	background-position-y: 0;
+}
 /*lines and rules */
 .line {
 	display: block;
