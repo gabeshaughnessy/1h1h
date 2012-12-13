@@ -588,7 +588,7 @@ $('body').keydown(function(e){
 			targetSection = currentSection;
 		}
 		if(targetSection.attr('id') != 'landing'){
-		var scrollOffset = 100;
+		var scrollOffset = 75;
 		}
 		else {
 		var scrollOffset = 0;
@@ -609,7 +609,7 @@ $('body').keydown(function(e){
 			targetSection = currentSection;
 		}
 		if(targetSection.attr('id') != 'contact'){
-		var scrollOffset = 100;
+		var scrollOffset = 75;
 		}
 		else {
 		var scrollOffset = 0;
