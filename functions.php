@@ -49,6 +49,12 @@ register_nav_menu( "global", "The menu that shows up by default, with links to o
 //add javascript to frontend
 
 function my_scripts_method() {
+if( !is_admin()){
+wp_deregister_script('jquery');
+	wp_enqueue_script('jquery',
+		get_template_directory_uri() . '/js/jquery-1.7.2.min.js',
+		array() );
+		}
     wp_enqueue_script('cycle',
 		get_template_directory_uri() . '/js/cycle.js',
 		array('jquery') );
