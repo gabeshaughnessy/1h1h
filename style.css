@@ -87,7 +87,7 @@ body{
 	background-image: url(images/menu_bg.png);
 	background-repeat: repeat-x;
 	background-position: -300px top;
-	height:  60px;
+	height:  57px;
 	-webkit-transition: background-position .5s ease-in-out;
 	-moz-transition: background-position .5s ease-in-out;
 	-o-transition: background-position .5s ease-in-out;

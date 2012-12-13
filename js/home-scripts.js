@@ -238,7 +238,10 @@ function moveMenuIndicator(){
 	});//end each for menu item links
 	
 	//menu for touch devices
+	if(currentSection == null){
 	var activeSection = jQuery('.active').first();
+	}
+	else { activeSection = currentSection; }
 	var currentItem = jQuery('#menu-main-menu a[href="#'+ activeSection.attr("id") +'"]');
 	var itemOffset = currentItem.offset().left;
 	var itemWidth = currentItem.width();
@@ -404,6 +407,7 @@ jQuery(window).load(function(){
 	  if (visible == true) {
 	 // alert('active landing'); //for debugging
 	 jQuery('.section').removeClass('active');
+	 currentSection = jQuery('#landing');
 	  jQuery('#landing').addClass('active');
 	    // element is now visible in the viewport
 	  jQuery('.menu-main-menu-container').slideUp();
@@ -422,7 +426,7 @@ jQuery(window).load(function(){
 	  if (visible == true) {
 	//  alert('active portfolio'); //for debugging
 		 jQuery('.section').removeClass('active');
-	
+	currentSection = jQuery('#portfolio');
 	  jQuery('#portfolio').addClass('active');
 	    // element is now visible in the viewport
 	    jQuery('.menu-main-menu-container').slideDown('fast');
@@ -441,7 +445,7 @@ jQuery(window).load(function(){
 	  if (visible == true) {
 	  //alert('active services'); //for debugging
 	  	 jQuery('.section').removeClass('active');
-	  
+	  currentSection = jQuery('#services');
 	  jQuery('#services').addClass('active');
 	    // element is now visible in the viewport
 	    jQuery('.menu-main-menu-container').slideDown('fast');
@@ -461,7 +465,7 @@ jQuery(window).load(function(){
 	  if (visible == true) {
 	 // alert('active casestudies'); //for debugging
 	 	 jQuery('.section').removeClass('active');
-	 
+	 currentSection = jQuery('#case_studies');
 	  jQuery('#case_studies').addClass('active');
 	    // element is now visible in the viewport
 	    jQuery('.menu-main-menu-container').slideDown('fast');
@@ -481,6 +485,7 @@ jQuery(window).load(function(){
 	  //alert('active artists'); //for debugging
 	  	 jQuery('.section').removeClass('active');
 	  
+	  currentSection = jQuery('#artists');
 		  jQuery('#artists').addClass('active');
 		    // element is now visible in the viewport
 		    jQuery('.menu-main-menu-container').slideDown('fast');
@@ -506,7 +511,7 @@ jQuery(window).load(function(){
 	jQuery('#clients').bind('inview', function (event, visible) {
 	  if (visible == true) {
 	  	 jQuery('.section').removeClass('active');
-	  
+	  currentSection = jQuery('#clients');
 	  jQuery('#clients').addClass('active');
 	    // element is now visible in the viewport
 	    jQuery('.menu-main-menu-container').slideDown('fast');
@@ -525,6 +530,7 @@ jQuery(window).load(function(){
 	  if (visible == true) {
 	  	 jQuery('.section').removeClass('active');
 	  
+	  currentSection = jQuery('#contact');
 	  jQuery('#contact').addClass('active');
 	    // element is now visible in the viewport
 	    //jQuery('.menu-main-menu-container').slideUp('fast');
@@ -553,29 +559,60 @@ jQuery(window).load(function(){
 
 /* +++++ Touch and Non-Touch Scripts ++++++ */
 
+//declare some globals 
+var targetSection;
+var currentSection;
 jQuery(document).ready(function($){
+
+
 
 //KEYBOARD EVENTS
 
 $('body').keydown(function(e){
 	//console.log('keycode: ',e.keyCode); //uncomment to see keycodes
-	var targetSection;
-	var currentSection = jQuery('.section.active');
+	
 	
 	if(e.keyCode == 38 ){//up arrow(38) is pressed
 		
-		jQuery('.close-reveal-modal').click();//close the modal
-		targetSection = currentSection.prev();
-		$.scrollTo(targetSection, 500);
 		
+		if(currentSection == null) {
+		currentSection = jQuery('.section.active');
+		}
+		if(currentSection.attr('id') != 'landing'){
+			targetSection = currentSection.prev('.section');
+		}
+		else {
+			targetSection = currentSection;
+		}
+		if(targetSection.attr('id') != 'landing'){
+		var scrollOffset = 100;
+		}
+		else {
+		var scrollOffset = 0;
+		}
+		$.scrollTo(targetSection, 500, {'offset': scrollOffset});
+		targetSection.addClass('active');
+		jQuery('.close-reveal-modal').click();//close the modal
 		e.preventDefault();
 	}
 	else if(e.keyCode == 40 ){//down(40) arrow is pressed
 		
-		
-		jQuery('.close-reveal-modal').click();//close the modal	
-		targetSection = currentSection.next();
-		$.scrollTo(targetSection, 500);
+		currentSection = jQuery('.section.active');
+				
+		if(currentSection.attr('id') != 'contact'){	
+			targetSection = currentSection.next('.section');
+		}
+		else {
+			targetSection = currentSection;
+		}
+		if(targetSection.attr('id') != 'contact'){
+		var scrollOffset = 100;
+		}
+		else {
+		var scrollOffset = 0;
+		}
+		$.scrollTo(targetSection, 500, {'offset': scrollOffset});
+		jQuery('.close-reveal-modal').click();//close the modal
 		
 		e.preventDefault();
 	}
@@ -637,7 +674,6 @@ else if (e.keyCode == 13) {//return(13) key was pressed
 });//end keydown events
 //end KEYBOARD EVENTS
 
-$.localScroll();
 var $container = jQuery('.filter-target');
 if($container.length > 0){
 	$container.isotope({
@@ -695,8 +731,26 @@ jQuery(window).load(function(){
 	}
 	$container.find('.isotope-item').animate(500);
 
+ jQuery(window).scroll();
+ moveMenuIndicator();
+ //currentSection = jQuery('.section.active');
 		
+var scrollOffset;
+$.localScroll({ 'offset': scrollOffset, 'onAfter' : function(){
+moveMenuIndicator();
+}, 'onBefore': function(e){
+clickTarget = e.toElement;
+if(jQuery(clickTarget).attr('href') != '#landing'){
+scrollOffset = 100;
+}
+else {
+scrollOffset = 0;
+}
+this.offset = scrollOffset;
+
+}});
 });
+
 	
 
 /* isotope activate */
@@ -861,3 +915,8 @@ function stopVideo(container){
     
 /* End modal activations */
 }); //end document ready
+jQuery(window).resize(function() {
+  moveMenuIndicator();
+  resizeSections();
+  jQuery(window).scroll();
+});
