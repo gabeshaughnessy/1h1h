@@ -73,7 +73,10 @@
 		<!--<div id="portfolio-title" > <span class="hh_text">One Hat One Hand</span> <span class="fredericka" >Portfolio</span></div>
 	
 		<div id="slider"></div>-->
-		
+		<h4 class="instructions" ><a data-target="<?php 
+		$page = get_page_by_path( 'instructions' );
+		echo get_permalink($page->ID); 
+		?>" class="modal-link parisienne">Instructions</a></h4>
 	</div>
 	<div id="hand-navigation">
 		<div id="next-hand" class="hand"></div>

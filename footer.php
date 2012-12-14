@@ -10,5 +10,6 @@
 
 <?php wp_footer(); ?>
 <?php get_template_part('modal'); ?>
+<?php get_template_part('modal-small'); ?>
 </body>
 </html>

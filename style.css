@@ -313,6 +313,9 @@ box-shadow: 0 4px 40px rgba(0,0,0,.5);
 	position: relative;
 
 }
+
+
+
 #portfolio.section{
 
 	padding: 0;
@@ -415,11 +418,20 @@ float: left;
 #portfolio-control {
 	position: absolute;
 	text-align: center;
-	width:  400px;
+	width:  40%;
 	z-index: 900;
 	height:  auto;
 	top: 300px;
 }
+.instructions a{
+	font-size: 2em;
+	color: #eee;
+	text-shadow:  0 0 8px rgba(0,0,0,.5);
+}
+.modal-link {
+cursor: pointer;
+
+	}
 #portfolio-title {
 	width: 300px;
 	height: auto;

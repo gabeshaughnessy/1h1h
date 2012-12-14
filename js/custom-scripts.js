@@ -413,6 +413,30 @@ function stopVideo(container){
 	   	  }); 
     });
    
+   //instructions modal
+   jQuery('.instructions .modal-link').click(function() {
+    var target = jQuery(this);
+    var targetID = target.attr('data-target');
+    console.log(targetID);
+    var modal = jQuery('#modal-small');
+   //load modal template into modal content with ajax
+   	var modalContent =  $.ajax({
+   	    url: targetID,
+   	    context: document.body
+   	  }).done(function() { 
+   	   
+   	   modal.find('#modal-content').html(modalContent.responseText);
+   	   
+   	    modal.reveal({
+   	    dismissModalClass: 'close-btn',
+   	    close: function(){stopVideo(modal);}
+   	    }).fitVids();
+   	     
+   	    activateLinks();
+   	     
+   	   	  }); 
+    });
+   
   var modalPosition = 0;
  function activateLinks(){
  

@@ -64,7 +64,8 @@ function resizeSections(){
 	jQuery('#fixed_bg').css({'height':windowHeight});
 	jQuery('#portfolio-wrapper').css({"width": windowWidth, "height": windowHeight + 100});
 	jQuery('.section').css({"width": windowWidth, "min-height": windowHeight + 100});
-	jQuery('#hand-navigation .hand').animate({'top': windowHeight/2}, 500);
+	jQuery('#hand-navigation .hand, #portfolio-control').animate({'top': windowHeight/2}, 500);
+	centerElement(jQuery('#portfolio-control'));
 	//jQuery('body').css({'height':windowHeight, 'overflow':'hidden'});
 	//jQuery('.menu-main-menu-container').css({"width": windowWidth});
 	var menuPos =  jQuery('#menu-main-menu').offset();
@@ -88,6 +89,18 @@ function imageTexturizer(){//puts a texture over all the images
 	});
 	
 }//end imageTexturizer
+
+//Hide the Instructions
+function hideInstructions(){
+jQuery('.instructions a').fadeOut(200);
+jQuery('#hand-navigation').fadeOut(200);
+}//end hide instructions
+//Show the Instructions
+function showInstructions(){
+jQuery('.instructions a').fadeIn(200);
+jQuery('#hand-navigation').fadeIn(200);
+}//end show instructions
+
 
 //TOUCHWIPE EVENT HANDLER
 function makeSwipes(targetElement){
@@ -434,6 +447,10 @@ jQuery(window).load(function(){
 	    // element is now visible in the viewport
 	    jQuery('.menu-main-menu-container').slideDown('fast');
 	   jQuery('#portfolio .nav-tab').show('fast');
+	   
+	   showInstructions(); 
+	   var hideThem=setTimeout(function(){hideInstructions()},3000);
+	  
 	   	
 	  } 
 	  else { //portfolio out of view
@@ -707,15 +724,23 @@ makeSwipes('#portfolio-wrapper');
 		}
 		if (orientation == 0) {
 		  //portraitMode, do your stuff here
+		  showInstructions(); 
+		  var hideThem=setTimeout(function(){hideInstructions()},3000);
 		}
 		else if (orientation == 90) {
 		  //landscapeMode
+		  showInstructions(); 
+		  var hideThem=setTimeout(function(){hideInstructions()},3000);
 		}
 		else if (orientation == -90) {
 		  //landscapeMode
+		  showInstructions(); 
+		  var hideThem=setTimeout(function(){hideInstructions()},3000);
 		}
 		else if (orientation == 180) {
 		  //portraitMode
+		  showInstructions(); 
+		  var hideThem=setTimeout(function(){hideInstructions()},3000);
 		}
 		else {
 		}
@@ -737,6 +762,8 @@ jQuery(window).load(function(){
  jQuery(window).scroll();
  moveMenuIndicator();
  //currentSection = jQuery('.section.active');
+
+
 		
 var scrollOffset;
 $.localScroll({ 'offset': scrollOffset, 'onAfter' : function(){
@@ -830,6 +857,30 @@ function stopVideo(container){
 	     
 	   	  }); 
     });
+    //instructions modal
+    jQuery('.instructions .modal-link').click(function() {
+     var target = jQuery(this);
+     var targetID = target.attr('data-target');
+     console.log(targetID);
+     var modal = jQuery('#modal-small');
+    //load modal template into modal content with ajax
+    	var modalContent =  $.ajax({
+    	    url: targetID,
+    	    context: document.body
+    	  }).done(function() { 
+    	   
+    	   modal.find('#modal-content').html(modalContent.responseText);
+    	   
+    	    modal.reveal({
+    	    dismissModalClass: 'close-btn',
+    	    close: function(){stopVideo(modal);}
+    	    }).fitVids();
+    	     
+    	    activateLinks();
+    	     
+    	   	  }); 
+     });
+    
    
   var modalPosition = 0;
  function activateLinks(){
@@ -897,6 +948,7 @@ function stopVideo(container){
 	        modal.find('#modal-content').html(modalContent.responseText);
 	        
      	    modal.reveal({
+     	    
      	    close: function(){stopVideo(modal);}
      	    }).fitVids();
      	    
@@ -921,5 +973,32 @@ function stopVideo(container){
 jQuery(window).resize(function() {
   moveMenuIndicator();
   resizeSections();
+  showInstructions(); 
+  
+  var hideThem=setTimeout(function(){hideInstructions()},3000);
   jQuery(window).scroll();
+});
+
+var showThem;
+var hideThem;
+jQuery(window).mousemove(function(event) {
+	if(currentSection.attr('id') == 'portfolio'){
+		
+		clearTimeout(showThem); 
+		clearTimeout(hideThem); 
+		
+		
+		 showThem=setTimeout(function(){
+		showInstructions();
+		clearTimeout(showThem);
+		
+			},200);
+		
+		 hideThem =setTimeout(function(){
+		hideInstructions();  
+		clearTimeout(hideThem); 
+		},2000); 
+	
+		
+			}
 });
