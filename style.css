@@ -422,11 +422,21 @@ float: left;
 	z-index: 900;
 	height:  auto;
 	top: 300px;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
 }
 .instructions a{
 	font-size: 2em;
-	color: #eee;
-	text-shadow:  0 0 8px rgba(0,0,0,.5);
+	color: #ddd;
+	text-shadow:  0 0 8px rgba(0,0,0,.7);
+	-webkit-transition: all .1s;
+	
+}
+.instructions a:hover {
+	color:  #000;
+	text-shadow:  0 0 8px rgba(255,255,255,.7);
 }
 .modal-link {
 cursor: pointer;

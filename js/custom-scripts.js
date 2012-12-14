@@ -23,6 +23,19 @@ return jQuery.uaMatch(navigator.userAgent).browser;
 }
 /* end browser test */
 
+//Hide the Instructions
+function hideInstructions(){
+jQuery('.instructions a').fadeOut(200);
+jQuery('#hand-navigation').fadeOut(200);
+}//end hide instructions
+//Show the Instructions
+function showInstructions(){
+jQuery('.instructions a').fadeIn(200);
+jQuery('#hand-navigation').fadeIn(200);
+}//end show instructions
+
+
+
 /* no link - void clicks */
 function noLink(){
 return false;
@@ -82,11 +95,15 @@ function resizeSections(){
 	jQuery('#fixed_bg').css({'height':windowHeight});
 	jQuery('#portfolio-wrapper').css({"width": windowWidth, "height": windowHeight + 100});
 	jQuery('.section').css({"width": windowWidth, "min-height": windowHeight + 100});
-	
-	var menuPos =  jQuery('#menu-main-menu, #menu-global-menu').offset();
+	jQuery('#hand-navigation .hand, #portfolio-control').animate({'top': windowHeight/2}, 500);
+	centerElement(jQuery('#portfolio-control'));
+	//jQuery('body').css({'height':windowHeight, 'overflow':'hidden'});
+	//jQuery('.menu-main-menu-container').css({"width": windowWidth});
+	var menuPos =  jQuery('#menu-main-menu').offset();
 	jQuery('#portfolio-nav').css({"paddingLeft": menuPos.left});
 }
 //End resizeSections
+
 
 function imageTexturizer(){//puts a texture over all the images
 
@@ -335,8 +352,13 @@ jQuery(window).load(function(){
 		}
 });
 	
-$(window).resize(function() {
+jQuery(window).resize(function() {
   moveMenuIndicator();
+  resizeSections();
+  showInstructions(); 
+  
+  var hideThem=setTimeout(function(){hideInstructions()},3000);
+  jQuery(window).scroll();
 });
 /* isotope activate */
 
@@ -524,3 +546,27 @@ function stopVideo(container){
     
 /* End modal activations */
 }); //end document ready
+
+var showThem;
+var hideThem;
+jQuery(window).mousemove(function(event) {
+	if(currentSection.attr('id') == 'portfolio'){
+		
+		clearTimeout(showThem); 
+		clearTimeout(hideThem); 
+		
+		
+		 showThem=setTimeout(function(){
+		showInstructions();
+		clearTimeout(showThem);
+		
+			},200);
+		
+		 hideThem =setTimeout(function(){
+		hideInstructions();  
+		clearTimeout(hideThem); 
+		},2000); 
+	
+		
+			}
+});
